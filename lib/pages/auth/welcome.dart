@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grossery/core/login_page_position_top.dart';
-import 'package:grossery/core/sign_up_page_position_top_r.dart';
+import '../../core/login_page_position_top.dart';
+import '../../core/sign_up_page_position_top_r.dart';
 import '../../widgets/custom_scaffold.dart';
 import '../../extensions/sized_box_x.dart';
 import '../../main.dart';
@@ -168,18 +168,14 @@ class Welcome extends StatelessWidget {
                           backgroundColor:
                               Colors.transparent, // اجعل الخلفية شفافة
                           shadowColor: const Color.fromARGB(235, 249, 255, 249),
-                          overlayColor: const Color.fromARGB(
-                            235,
-                            250,
-                            250,
-                            250,
-                          ).withValues(
-                            alpha: 50,
-                            red: 50,
-                            green: 50,
-                            blue: 50,
-                            colorSpace: ColorSpace.sRGB,
-                          ), // لون التفاعل عند الضغط
+                          overlayColor: const Color.fromARGB(235, 250, 250, 250)
+                              .withValues(
+                                alpha: 50,
+                                red: 50,
+                                green: 50,
+                                blue: 50,
+                                colorSpace: ColorSpace.sRGB,
+                              ), // لون التفاعل عند الضغط
 
                           minimumSize: Size(double.infinity, 50),
                         ),

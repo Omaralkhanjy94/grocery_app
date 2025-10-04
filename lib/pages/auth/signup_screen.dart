@@ -1,15 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grossery/core/sign_up_page_position_top_r.dart';
-import '../home_screen.dart';
+import '../../core/sign_up_page_position_top_r.dart';
 import 'login_screen.dart';
 import 'welcome.dart';
 import '../../extensions/email_text_field_x.dart';
 import '../../extensions/password_text_field_x.dart';
 import '../../extensions/phone_number_x.dart';
 import '../../extensions/sized_box_x.dart';
-import '../../go.dart';
+import 'package:short_navigation/short_navigation.dart' show Go;
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -62,6 +61,7 @@ class _SignupScreenState extends State<SignupScreen> {
     });
   }
 
+  int _elevatedButtonPressedCount = 0;
   @override
   Widget build(BuildContext context) {
     return Welcome(
@@ -70,18 +70,15 @@ class _SignupScreenState extends State<SignupScreen> {
       titleText: titleText,
       backgroundImage: backgroundImage,
       elevatedButtonChild: elevatedButtonChild,
-      elevatedButtonOnPressed: () {
-        // Handle Sign Up logic here
+      elevatedButtonOnPressed: () async {
         if (kDebugMode) {
-          print('Sign Up button pressed');
+          _elevatedButtonPressedCount++;
+          print('Sign Up button pressed $_elevatedButtonPressedCount');
         }
-        // After successful sign up, navigate to home or another screen
-        // Go.toNamed('/home');
-        Go.to(const HomeScreen());
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => const HomeScreen()),
-        // );
+        await signUp(
+          email: emailController.text.trim(),
+          password: passwordController.text,
+        );
       },
       descriptionText: descriptionText,
       formWidgets: [
@@ -134,5 +131,21 @@ class _SignupScreenState extends State<SignupScreen> {
         );
       },
     );
+  }
+
+  //Signing up
+  Future<void> signUp({required String email, required String password}) async {
+    // Handle Sign Up logic here
+    // After successful sign up, navigate to home or another screen
+    if (email != "" || !email.contains('@')) {
+      if (kDebugMode) {
+        throw Exception('Invalid email address');
+      }
+    } else
+      Go.toReplaceName('/home');
+    if (kDebugMode) {
+      print('You has logged in successfully!\n the user email: $email');
+    }
+    return Future.delayed(const Duration(seconds: 2));
   }
 }

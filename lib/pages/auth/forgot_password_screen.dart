@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:short_navigation/short_navigation.dart' show Go;
 import '../../extensions/email_text_field_x.dart';
 import '../../extensions/sized_box_x.dart';
 import '../../widgets/custom_scaffold.dart';
@@ -123,7 +124,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Reset link sent to your email')),
           );
-          Navigator.of(context).pop();
+          // Navigator.of(context).pop();
+          Go.back();
         }
       } catch (e) {
         if (mounted) {

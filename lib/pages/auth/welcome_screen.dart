@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grossery/pages/auth/welcome.dart';
-import '../../go.dart';
+import 'welcome.dart';
 import '../../extensions/sized_box_x.dart';
+import 'package:short_navigation/short_navigation.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 
@@ -30,11 +30,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   ///Going to Signup screen using function
   void elevatedButtonOnPressed() {
     /// Handle Sign Up navigation here
-    /// For example, navigate to the SignUpScreen
-    /// Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
-    /// Or using named routes if set up
-    /// Navigator.pushNamed(context, '/signup');
-    /// Using Go class for navigation
     if (kDebugMode) {
       print('Create an account button pressed');
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grossery/extensions/change_content_position.dart';
-import 'package:grossery/extensions/email_text_field_x.dart';
+import '../../extensions/change_content_position.dart';
+import '../../extensions/email_text_field_x.dart';
 
 extension PhoneNumberX on String {
   Widget phoneNumberTextField(
@@ -9,7 +9,7 @@ extension PhoneNumberX on String {
   ) {
     return TextField(
       onTap: () => context.switchPosition(),
-      onSubmitted: (text)=>resetContent(context),
+      onSubmitted: (text) => resetContent(context),
       controller: phoneController,
       decoration: InputDecoration(
         filled: true,

@@ -1,9 +1,9 @@
 //Converting email text field to an extension for reusability
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:grossery/core/login_page_position_top.dart';
-import 'package:grossery/core/sign_up_page_position_top_r.dart';
-import 'package:grossery/extensions/change_content_position.dart';
+import '../../core/login_page_position_top.dart';
+import '../../core/sign_up_page_position_top_r.dart';
+import 'change_content_position.dart';
 
 extension EmailTextFieldX on String {
   Widget emailTextField(

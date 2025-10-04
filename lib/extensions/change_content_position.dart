@@ -1,5 +1,5 @@
-import 'package:grossery/core/login_page_position_top.dart';
-import 'package:grossery/core/sign_up_page_position_top_r.dart';
+import '../../core/login_page_position_top.dart';
+import '../../core/sign_up_page_position_top_r.dart';
 
 extension ChangeContentPosition on void {
   void switchPosition() {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../pages/home_screen.dart';
+import 'package:short_navigation/short_navigation.dart' show Go;
 import 'pages/auth/login_screen.dart';
 import 'pages/auth/signup_screen.dart';
 import 'pages/auth/welcome_screen.dart' show WelcomeScreen;
@@ -10,6 +12,7 @@ class Groccery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: Go.navigatorKey,
       title: 'Grocery App',
       theme: ThemeData(primarySwatch: Colors.green),
       home: SplashScreen(),
@@ -18,11 +21,7 @@ class Groccery extends StatelessWidget {
         '/splash2': (context) => SplashScreen2(),
         '/splash3': (context) => SplashScreen3(),
         '/splash4': (context) => SplashScreen4(),
-        '/home':
-            (context) => Scaffold(
-              appBar: AppBar(title: Text('Home Screen')),
-              body: Center(child: Text('Welcome to the Home Screen!')),
-            ),
+        '/home': (context) => const HomeScreen(),
         '/welcome': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
         // Add other routes here as needed
