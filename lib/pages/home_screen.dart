@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
+import 'package:grocery_app/widgets/category_widget.dart';
+import '../../extensions/customization_string.dart';
 import '../../extensions/sized_box_x.dart';
-// import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/custom_scaffold.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -56,32 +58,52 @@ class HomeScreen extends StatelessWidget {
               // a text over the image that says "20% OFF on your first purchase"
               Container(
                 width: double.infinity,
-                height: 200,
+                height: 270,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(0),
                   image: const DecorationImage(
                     image: AssetImage('assets/images/home_screen_cover.jpg'),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.black.withOpacity(0.3),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '20% OFF on your first purchase',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                child: Align(
+                  alignment: Alignment(-0.5, 0.3), // left center
+                  child: Text(
+                    '20% OFF on your first purchase'.addNewLine(maxLength: 15),
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
               //todo: categories
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Categories",style: GoogleFonts.poppins(
+                    fontSize: 18,fontWeight: FontWeight.w700
+                  ),),
+                  IconButton(onPressed: (){}, icon: Icon(Icons.keyboard_arrow_right))
+                ],
+              ),
+
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 5,
+                  children: [
+                    //todo: create a list includes all categories
+                    for(int i=0; i< 10; i++)
+                      CategoryWidget(
+                          circleColor: Color(0xffE6F2EA),
+                          image: "assets/images/vegetables_icon.png",
+                          title: "Vegetables"
+                      )
+                  ],
+                ),
+              )
               //todo: featured products
             ],
           ),
