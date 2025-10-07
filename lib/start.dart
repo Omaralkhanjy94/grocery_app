@@ -21,7 +21,7 @@ class Groccery extends StatelessWidget {
         '/splash2': (context) => SplashScreen2(),
         '/splash3': (context) => SplashScreen3(),
         '/splash4': (context) => SplashScreen4(),
-        '/home': (context) => const HomeScreen(),
+        '/home': (context) => HomeScreen(),
         '/welcome': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
         // Add other routes here as needed
