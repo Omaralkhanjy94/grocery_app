@@ -8,6 +8,7 @@ class Product {
   String? description;
   bool? isFavorite;
   Color? circleColor;
+  VoidCallback? onTap;
   Product({
     required this.id,
     required this.name,
@@ -16,6 +17,7 @@ class Product {
     this.description,
     this.isFavorite = false,
     this.circleColor,
+    this.onTap,
   });
 }
 
@@ -29,6 +31,10 @@ class Products {
         price: 8.00,
         description: 'dozen',
         circleColor: const Color(0xffFFF0E5),
+        isFavorite: true,
+        onTap: () {
+          // todo: go to product details page
+        },
       ),
       Product(
         id: '2',
@@ -37,6 +43,10 @@ class Products {
         price: 7.00,
         description: '2.0 lbs',
         circleColor: const Color(0xffE6F2EA),
+        isFavorite: false,
+        onTap: () {
+          // todo: go to product details page
+        },
       ),
       Product(
         id: '3',
@@ -45,6 +55,10 @@ class Products {
         price: 3.99,
         description: '1.50 lbs',
         circleColor: const Color(0xffFFF6E3),
+        isFavorite: false,
+        onTap: () {
+          // todo: go to product details page
+        },
       ),
       Product(
         id: '4',
@@ -53,6 +67,10 @@ class Products {
         price: 3.00,
         description: '1.0 kg',
         circleColor: const Color(0xffE6F2EA),
+        isFavorite: true,
+        onTap: () {
+          // todo: go to product details page
+        },
       ),
       Product(
         id: '5',
@@ -61,6 +79,10 @@ class Products {
         price: 7.05,
         description: '5.0 lbs',
         circleColor: const Color(0xFFE2F5AD),
+        isFavorite: false,
+        onTap: () {
+          // todo: go to product details page
+        },
       ),
       Product(
         id: '6',
@@ -69,6 +91,10 @@ class Products {
         price: 2.05,
         description: '1.5 lbs',
         circleColor: const Color(0xffFFF0E5),
+        isFavorite: false,
+        onTap: () {
+          // todo: go to product details page
+        },
       ),
     ];
   }
