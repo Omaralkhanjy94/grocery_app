@@ -10,6 +10,7 @@ import 'package:short_navigation/short_navigation.dart';
 import 'forgot_password_screen.dart';
 import 'signup_screen.dart';
 
+/// A StatefulWidget for the Login Screen
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 

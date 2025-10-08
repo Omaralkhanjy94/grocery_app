@@ -1,11 +1,12 @@
-//Converting email text field to an extension for reusability
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/login_page_position_top.dart';
 import '../../core/sign_up_page_position_top_r.dart';
 import 'change_content_position.dart';
 
+/// Converting email text field to an extension for reusability
 extension EmailTextFieldX on String {
+  /// Returns a styled email TextField widget
   Widget emailTextField(
     BuildContext context,
     TextEditingController emailController,
@@ -35,6 +36,7 @@ extension EmailTextFieldX on String {
     );
   }
 
+  /// Resets the content position and dismisses the keyboard
   void resetContent(BuildContext context) {
     // Dismiss the keyboard when tapping outside of input fields
     FocusScope.of(context).unfocus();

@@ -1,0 +1,46 @@
+import 'dart:collection';
+import 'package:flutter/material.dart';
+import 'pages/auth/login_screen.dart';
+import 'pages/auth/signup_screen.dart';
+import 'pages/auth/welcome_screen.dart';
+import 'pages/home_screen.dart';
+import 'pages/splash_screen.dart';
+
+/// A class that defines the routes for the application.
+class GoRoutes extends MapBase<String, WidgetBuilder> {
+  final Map<String, WidgetBuilder> _routes = {
+    '/splash1': (context) => SplashScreen1(),
+    '/splash2': (context) => SplashScreen2(),
+    '/splash3': (context) => SplashScreen3(),
+    '/splash4': (context) => SplashScreen4(),
+    '/home': (context) => HomeScreen(),
+    '/welcome': (context) => WelcomeScreen(),
+    '/login': (context) => LoginScreen(),
+    // Add other routes here as needed
+    '/signup': (context) => SignupScreen(),
+  };
+
+  @override
+  /// Returns the widget builder for the given route key.
+  WidgetBuilder? operator [](Object? key) => _routes[key];
+
+  @override
+  /// Sets the widget builder for the given route key.
+  void operator []=(String key, WidgetBuilder value) {
+    _routes[key] = value;
+  }
+
+  @override
+  /// Clears all routes from the map.
+  void clear() {
+    _routes.clear();
+  }
+
+  @override
+  /// Returns the number of routes in the map.
+  Iterable<String> get keys => _routes.keys;
+
+  @override
+  /// Returns the number of routes in the map.
+  WidgetBuilder? remove(Object? key) => _routes.remove(key);
+}

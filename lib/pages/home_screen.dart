@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import 'package:grocery_app/models/products.dart';
-import 'package:grocery_app/widgets/product_widget.dart';
-import 'package:grocery_app/widgets/session_widget.dart';
+import '../../models/products.dart';
+import '../../widgets/product_widget.dart';
+import '../../widgets/session_widget.dart';
 import '../../models/categories.dart';
 import '../../widgets/category_widget.dart';
 import '../../extensions/customization_string.dart';
@@ -22,12 +22,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       title: 'Home',
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.sizeOf(context).height,
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
+      body: SizedBox(
+        height: MediaQuery.sizeOf(context).height,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   //todo: Search Bar

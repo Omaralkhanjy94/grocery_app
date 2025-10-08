@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../../extensions/change_content_position.dart';
 import '../../extensions/email_text_field_x.dart';
 
+/// Converting phone number text field to an extension for reusability
 extension PhoneNumberX on String {
+  /// The phone number text field widget
   Widget phoneNumberTextField(
     BuildContext context,
     TextEditingController phoneController,

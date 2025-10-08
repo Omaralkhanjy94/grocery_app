@@ -1,4 +1,3 @@
-//Converting password text field to an extension for reusability
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +5,7 @@ import '../../core/login_page_position_top.dart';
 import '../../core/sign_up_page_position_top_r.dart';
 import 'change_content_position.dart';
 
+/// Converting password text field to an extension for reusability
 class PasswordTextFieldX extends StatefulWidget {
   final String hintText;
   final VoidCallback? onPressed;
@@ -74,6 +74,7 @@ class PasswordTextFieldState extends State<PasswordTextFieldX> {
     /// Converts the password hint text to dots for obscured display
   }
 
+  /// Resets the content position and dismisses the keyboard
   void resetContent(BuildContext context) {
     // Dismiss the keyboard when tapping outside of input fields
     FocusScope.of(context).unfocus();
@@ -81,6 +82,7 @@ class PasswordTextFieldState extends State<PasswordTextFieldX> {
     signUpPagePositionTopR = 8.9;
   }
 
+  /// Converts the password hint text to dots for obscured display
   String convertHintTextToDots(String hintText) {
     return '•' * hintText.length;
   }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import '../pages/home_screen.dart';
+import 'package:grocery_app/go_routes.dart';
 import 'package:short_navigation/short_navigation.dart' show Go;
-import 'pages/auth/login_screen.dart';
-import 'pages/auth/signup_screen.dart';
-import 'pages/auth/welcome_screen.dart' show WelcomeScreen;
 import 'pages/splash_screen.dart';
 
-class Groccery extends StatelessWidget {
-  const Groccery({super.key});
+/// The main entry point of the application.
+class Grocery extends StatelessWidget {
+  const Grocery({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +14,7 @@ class Groccery extends StatelessWidget {
       title: 'Grocery App',
       theme: ThemeData(primarySwatch: Colors.green),
       home: SplashScreen(),
-      routes: {
-        '/splash1': (context) => SplashScreen1(),
-        '/splash2': (context) => SplashScreen2(),
-        '/splash3': (context) => SplashScreen3(),
-        '/splash4': (context) => SplashScreen4(),
-        '/home': (context) => HomeScreen(),
-        '/welcome': (context) => WelcomeScreen(),
-        '/login': (context) => LoginScreen(),
-        // Add other routes here as needed
-        '/signup': (context) => SignupScreen(),
-      },
+      routes: GoRoutes(),
     );
   }
 }

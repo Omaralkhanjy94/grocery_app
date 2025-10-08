@@ -10,6 +10,7 @@ import '../../extensions/phone_number_x.dart';
 import '../../extensions/sized_box_x.dart';
 import 'package:short_navigation/short_navigation.dart' show Go;
 
+/// The SignupScreen widget
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 

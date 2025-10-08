@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/login_page_position_top.dart';
@@ -18,7 +17,7 @@ class Welcome extends StatelessWidget {
   final String navigationText;
   final String navigationLinktitle;
   final VoidCallback navigationOnPressed;
-  double positionedTop;
+  final double positionedTop;
   Welcome({
     super.key,
     this.backgroundImage,
