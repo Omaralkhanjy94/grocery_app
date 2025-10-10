@@ -40,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
               splashScreens[3],
             ],
           ),
+          //indicator dots
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(

@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
+import 'package:grocery_app/extensions/sized_box_x.dart';
 import '../models/products.dart' show Product;
 
-class ProductWidget extends StatelessWidget {
+class ProductWidget extends StatefulWidget {
   final Product product;
 
   const ProductWidget({super.key, required this.product});
+
+  @override
+  State<ProductWidget> createState() => _ProductWidgetState();
+}
+
+class _ProductWidgetState extends State<ProductWidget> {
+  Product get product => widget.product;
 
   ///Product name
   String get name => product.name;
@@ -30,10 +38,21 @@ class ProductWidget extends StatelessWidget {
 
   ///Product onTap
   VoidCallback? get onTap => product.onTap;
+
+  bool addedToCart = false;
+  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap ?? () {},
+      onTap:
+          onTap ??
+          () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('The product details page is under development.'),
+              ),
+            );
+          },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -76,7 +95,7 @@ class ProductWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            8.height,
             // Product Price
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -92,7 +111,7 @@ class ProductWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 4),
+            4.height,
             // Product Name
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -110,56 +129,104 @@ class ProductWidget extends StatelessWidget {
             ),
             //Product Description
             if (description != null)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Center(
-                  child: Text(
-                    description!,
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xFF868889),
-                    ),
-                    textAlign: TextAlign.center,
+              Center(
+                child: Text(
+                  description!,
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xFF868889),
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             Divider(color: Color(0xFFEBEBEB)),
             // Add to cart button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: SizedBox(
-                width: double.infinity,
-                height: 30,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFFFFFF),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+            SizedBox(
+              width: double.infinity,
+              height: 33,
+              child: TextButton(
+                onPressed: () {
+                  //todo: Handle add to cart button press
+                  setState(() {
+                    addedToCart = true;
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('$name has been added to your cart.'),
                     ),
-                  ),
-                  onPressed: () {
-                    //todo: Handle add to cart button press
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 16,
-                        color: Color(0xFF6CC51D),
+                  );
+                },
+                child: addedToCart
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              if (quantity > 1) {
+                                quantity--;
+                                (context as Element).markNeedsBuild();
+                              }
+                              if (quantity == 1) {
+                                setState(() {
+                                  addedToCart = false;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        '$name has been removed from your cart.',
+                                      ),
+                                    ),
+                                  );
+                                });
+                              }
+                            },
+                            icon: Icon(
+                              Icons.remove,
+                              size: 12,
+                              color: Color(0xFF6CC51D),
+                            ),
+                          ),
+                          Text(
+                            quantity.toString(),
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              quantity++;
+                              (context as Element).markNeedsBuild();
+                            },
+                            icon: Icon(
+                              Icons.add,
+                              size: 16,
+                              color: Color(0xFF6CC51D),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.shopping_bag_outlined,
+                            size: 16,
+                            color: Color(0xFF6CC51D),
+                          ),
+                          5.width,
+                          Text(
+                            'Add to Cart',
+                            style: GoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 5),
-                      Text(
-                        'Add to Cart',
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ),
             ),
           ],
