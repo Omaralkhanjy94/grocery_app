@@ -4,7 +4,7 @@
 // It includes a search bar, a slideshow of cover images, and sections for categories and featured products.
 import 'package:flutter/material.dart';
 
-import '../../extensions/sized_box_x.dart';
+import '../extensions/spaces_x.dart';
 import '../../models/categories.dart';
 import '../../models/products.dart';
 import '../../widgets/cover_widget.dart';
@@ -101,6 +101,11 @@ class _HomeScreenState extends State<HomeScreen> {
           imagePath: 'assets/images/home_screen_cover.jpg',
           offerText: '40% OFF on your third purchase',
         ),
+        CoverWidget(
+          key: ValueKey(4),
+          imagePath: 'assets/images/home_screen_cover.jpg',
+          offerText: '40% OFF on your fourth purchase',
+        ),
       ],
     );
   }
@@ -168,33 +173,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// A widget that displays indicator dots for the slideshow
   Widget get getIndicatorDots {
-    bool isTapped = false;
-    return InkWell(
-      onTap: () {
-        // Handle tap on indicator dot
-        setState(() {
-          isTapped = !isTapped;
-        });
-      },
-      child: Positioned(
-        bottom: 50,
-        left: 10,
-        child: Row(
-          children: List.generate(4, (index) {
-            return AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              width: isTapped ? 20 : 10,
-              height: 10,
-              decoration: BoxDecoration(
-                color: currentIndexNow == index
-                    ? Color(0xff6CC51D)
-                    : Color(0xffD9D9D9),
-                borderRadius: BorderRadius.circular(5),
-              ),
-            );
-          }),
-        ),
+    return Positioned(
+      bottom: 50,
+      left: 30,
+      child: Row(
+        children: List.generate(3, (index) {
+          return AnimatedContainer(
+            duration: Duration(milliseconds: 500),
+            margin: EdgeInsets.symmetric(horizontal: 3),
+            width: currentIndexNow % 2 == 0 && currentIndexNow == index
+                ? 18
+                : 10,
+            height: 10,
+            decoration: BoxDecoration(
+              color: currentIndexNow == index
+                  ? Color(0xff6CC51D)
+                  : Color(0xFFFFFFFF),
+              borderRadius: BorderRadius.circular(5),
+            ),
+          );
+        }),
       ),
     );
   }

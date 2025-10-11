@@ -5,7 +5,11 @@ import '../../extensions/customization_string.dart';
 class CoverWidget extends StatelessWidget {
   final String imagePath;
   final String offerText;
-  const CoverWidget({super.key, required this.imagePath, required this.offerText});
+  const CoverWidget({
+    super.key,
+    required this.imagePath,
+    required this.offerText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +19,14 @@ class CoverWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0),
         image: const DecorationImage(
-          image: AssetImage(
-            'assets/images/home_screen_cover.jpg',
-          ),
+          image: AssetImage('assets/images/home_screen_cover.jpg'),
           fit: BoxFit.fill,
         ),
       ),
       child: Align(
         alignment: Alignment(-0.5, 0.3), // left center
         child: Text(
-          '20% OFF on your first purchase'.addNewLine(
-            maxLength: 15,
-          ),
+          offerText.addNewLine(maxLength: 15),
           style: GoogleFonts.poppins(
             color: Colors.black,
             fontSize: 18,

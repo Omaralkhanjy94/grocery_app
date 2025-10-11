@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../core/login_page_position_top.dart';
 import '../../core/sign_up_page_position_top_r.dart';
 import '../../widgets/custom_scaffold.dart';
-import '../../extensions/sized_box_x.dart';
+import '../../extensions/spaces_x.dart';
 import '../../main.dart';
 
 class Welcome extends StatelessWidget {

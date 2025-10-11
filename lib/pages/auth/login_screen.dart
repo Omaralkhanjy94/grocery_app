@@ -5,7 +5,7 @@ import '../../core/login_page_position_top.dart';
 import 'welcome.dart';
 import '../../extensions/email_text_field_x.dart';
 import '../../extensions/password_text_field_x.dart';
-import '../../extensions/sized_box_x.dart';
+import '../../extensions/spaces_x.dart';
 import 'package:short_navigation/short_navigation.dart';
 import 'forgot_password_screen.dart';
 import 'signup_screen.dart';

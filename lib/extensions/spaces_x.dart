@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 /// Extension on [num] to provide easy access to [SizedBox] widgets for spacing.
 extension SizedBoxX on num {
   /// Returns a [SizedBox] with the same width and height as this one, but with the given [child].
+  /// Example usage: instead of writing `SizedBox(height: 10)`, you can write `10.height`.
+  /// This makes the code more concise and readable.
   SizedBox get height => SizedBox(height: toDouble());
+
+  /// Returns a [SizedBox] with the same width and height as this one, but with the given [child].
+  /// Example usage: instead of writing `SizedBox(width: 10)`, you can write `10.width`.
+  /// This makes the code more concise and readable.
   SizedBox get width => SizedBox(width: toDouble());
 }
-
-/// Example usage: instead of writing `SizedBox(height: 10)`, you can write `10.height`.
-/// This makes the code more concise and readable.
 
 ///Padding extension
 ///Extension on [num] to provide easy access to [EdgeInsets] for padding.

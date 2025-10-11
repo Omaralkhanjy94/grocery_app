@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'welcome.dart';
-import '../../extensions/sized_box_x.dart';
+import '../../extensions/spaces_x.dart';
 import 'package:short_navigation/short_navigation.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';

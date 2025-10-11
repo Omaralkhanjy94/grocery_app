@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../extensions/sized_box_x.dart';
+import '../extensions/spaces_x.dart';
 
 class CustomSplashScreen extends StatelessWidget {
   final String? pageTitle;

@@ -8,6 +8,10 @@ extension StringCustomization on String {
       if ((i + 1) % maxLength == 0 && i != length - 1) {
         buffer.write('\n');
       }
+      if (length - i <= maxLength) {
+        buffer.write(substring(i + 1));
+        break;
+      }
     }
     return buffer.toString();
   }

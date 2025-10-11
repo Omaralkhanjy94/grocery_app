@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/custom_splash_screen.dart';
-import '../extensions/sized_box_x.dart';
+import '../extensions/spaces_x.dart';
 
 import '../widgets/custom_scaffold.dart';
 

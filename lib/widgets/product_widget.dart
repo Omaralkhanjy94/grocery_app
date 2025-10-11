@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import 'package:grocery_app/extensions/sized_box_x.dart';
+import 'package:grocery_app/extensions/spaces_x.dart';
 import '../models/products.dart' show Product;
 
 class ProductWidget extends StatefulWidget {
