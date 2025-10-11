@@ -8,7 +8,8 @@ class Product {
   String? description;
   bool? isFavorite;
   Color? circleColor;
-  VoidCallback? onTap;
+  double? rating;
+
   Product({
     required this.id,
     required this.name,
@@ -17,7 +18,7 @@ class Product {
     this.description,
     this.isFavorite = false,
     this.circleColor,
-    this.onTap,
+    this.rating,
   });
 }
 
@@ -32,9 +33,7 @@ class Products {
         description: 'dozen',
         circleColor: const Color(0xffFFF0E5),
         isFavorite: true,
-        onTap: () {
-          // todo: go to product details page
-        },
+        rating: 5.0,
       ),
       Product(
         id: '2',
@@ -44,9 +43,7 @@ class Products {
         description: '2.0 lbs',
         circleColor: const Color(0xffE6F2EA),
         isFavorite: false,
-        onTap: () {
-          // todo: go to product details page
-        },
+        rating: 4.5,
       ),
       Product(
         id: '3',
@@ -56,9 +53,7 @@ class Products {
         description: '1.50 lbs',
         circleColor: const Color(0xffFFF6E3),
         isFavorite: false,
-        onTap: () {
-          // todo: go to product details page
-        },
+        rating: 5.0,
       ),
       Product(
         id: '4',
@@ -68,9 +63,7 @@ class Products {
         description: '1.0 kg',
         circleColor: const Color(0xffE6F2EA),
         isFavorite: true,
-        onTap: () {
-          // todo: go to product details page
-        },
+        rating: 4.0,
       ),
       Product(
         id: '5',
@@ -80,9 +73,7 @@ class Products {
         description: '5.0 lbs',
         circleColor: const Color(0xFFE2F5AD),
         isFavorite: false,
-        onTap: () {
-          // todo: go to product details page
-        },
+        rating: 4.0,
       ),
       Product(
         id: '6',
@@ -92,9 +83,7 @@ class Products {
         description: '1.5 lbs',
         circleColor: const Color(0xffFFF0E5),
         isFavorite: false,
-        onTap: () {
-          // todo: go to product details page
-        },
+        rating: 3.5,
       ),
     ];
   }

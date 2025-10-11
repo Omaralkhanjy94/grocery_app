@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import 'package:grocery_app/extensions/spaces_x.dart';
+import '../../extensions/spaces_x.dart';
 import '../models/products.dart' show Product;
 
 class ProductWidget extends StatefulWidget {
   final Product product;
-
-  const ProductWidget({super.key, required this.product});
+  final VoidCallback? onTap;
+  const ProductWidget({super.key, required this.product, this.onTap});
 
   @override
   State<ProductWidget> createState() => _ProductWidgetState();
@@ -36,10 +36,13 @@ class _ProductWidgetState extends State<ProductWidget> {
   ///Product circle color
   Color? get circleColor => product.circleColor;
 
-  ///Product onTap
-  VoidCallback? get onTap => product.onTap;
+  ///On tap function
+  VoidCallback? get onTap => widget.onTap;
 
+  /// Whether the product has been added to the cart
   bool addedToCart = false;
+
+  /// The quantity of the product in the cart
   int quantity = 1;
   @override
   Widget build(BuildContext context) {
