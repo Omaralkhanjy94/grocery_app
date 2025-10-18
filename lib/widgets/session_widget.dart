@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class SessionWidget extends StatelessWidget {
   final String title;

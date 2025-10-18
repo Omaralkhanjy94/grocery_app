@@ -1,9 +1,31 @@
 // ignore_for_file: must_be_immutable
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../core/login_page_position_top.dart';
-import '../../core/sign_up_page_position_top_r.dart';
-import 'change_content_position.dart';
+// import 'package:flutter/material.dart';
+import '../core/packages_manager/ui_imports.dart'
+    show
+        StatefulWidget,
+        VoidCallback,
+        Widget,
+        TextEditingController,
+        State,
+        BuildContext,
+        TextField,
+        InputDecoration,
+        Color,
+        Colors,
+        Icon,
+        Icons,
+        OutlineInputBorder,
+        BorderRadius,
+        BorderSide,
+        EdgeInsets,
+        FocusScope;
+// import 'package:google_fonts/google_fonts.dart';
+import '../core/packages_manager/network_imports.dart' show GoogleFonts;
+// import '../../core/login_page_position_top.dart';
+// import '../../core/sign_up_page_position_top_r.dart';
+// import 'change_content_position.dart';
+import '../core/packages_manager/extensions_imports.dart'
+    show loginPagePositionTopR, signUpPagePositionTopR, ChangeContentPosition;
 
 /// Converting password text field to an extension for reusability
 class PasswordTextFieldX extends StatefulWidget {

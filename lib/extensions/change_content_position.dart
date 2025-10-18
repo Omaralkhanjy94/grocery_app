@@ -1,5 +1,7 @@
-import '../../core/login_page_position_top.dart';
-import '../../core/sign_up_page_position_top_r.dart';
+// import '../../core/login_page_position_top.dart';
+// import '../../core/sign_up_page_position_top_r.dart';
+import '../core/packages_manager/extensions_imports.dart'
+    show loginPagePositionTopR, signUpPagePositionTopR;
 
 extension ChangeContentPosition on void {
   void switchPosition() {

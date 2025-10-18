@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../widgets/custom_splash_screen.dart';
-import '../extensions/spaces_x.dart';
-
-import '../widgets/custom_scaffold.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/extensions_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -55,10 +52,9 @@ class _SplashScreenState extends State<SplashScreen> {
                     width: 10,
                     height: 10,
                     decoration: BoxDecoration(
-                      color:
-                          currentIndexNow == index
-                              ? Color(0xff6CC51D)
-                              : Color(0xffD9D9D9),
+                      color: currentIndexNow == index
+                          ? Color(0xff6CC51D)
+                          : Color(0xffD9D9D9),
                       borderRadius: BorderRadius.circular(5),
                     ),
                   );

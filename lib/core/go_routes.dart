@@ -1,10 +1,5 @@
 import 'dart:collection';
-import 'package:flutter/material.dart';
-import 'pages/auth/login_screen.dart';
-import 'pages/auth/signup_screen.dart';
-import 'pages/auth/welcome_screen.dart';
-import 'pages/home_screen.dart';
-import 'pages/splash_screen.dart';
+import '../core/packages_manager/ui_imports.dart';
 
 /// A class that defines the routes for the application.
 class GoRoutes extends MapBase<String, WidgetBuilder> {

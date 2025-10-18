@@ -1,11 +1,8 @@
 //When the user forgets their password, he can use this screen to reset it
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:short_navigation/short_navigation.dart' show Go;
-import '../../extensions/email_text_field_x.dart';
-import '../../extensions/spaces_x.dart';
-import '../../widgets/custom_scaffold.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/extensions_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -82,21 +79,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         minHeight: 47,
                         maxHeight: 50,
                       ), // حجم افتراضي
-                      child:
-                          _isLoading
-                              ? const CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.white,
-                                ),
-                              )
-                              : Text(
-                                'Send link',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white,
-                                ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white,
                               ),
+                            )
+                          : Text(
+                              'Send link',
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white,
+                              ),
+                            ),
                     ),
                   ),
                 ),

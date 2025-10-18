@@ -1,14 +1,17 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../core/login_page_position_top.dart';
-import 'welcome.dart';
-import '../../extensions/email_text_field_x.dart';
-import '../../extensions/password_text_field_x.dart';
-import '../../extensions/spaces_x.dart';
-import 'package:short_navigation/short_navigation.dart';
-import 'forgot_password_screen.dart';
-import 'signup_screen.dart';
+// import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import '../../core/login_page_position_top.dart';
+// import 'welcome.dart';
+// import '../../extensions/email_text_field_x.dart';
+// import '../../extensions/password_text_field_x.dart';
+// import '../../extensions/spaces_x.dart';
+// import 'package:short_navigation/short_navigation.dart';
+// import 'forgot_password_screen.dart';
+// import 'signup_screen.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/extensions_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 /// A StatefulWidget for the Login Screen
 class LoginScreen extends StatefulWidget {
@@ -175,12 +178,13 @@ class _LoginScreenState extends State<LoginScreen> {
             TextButton(
               onPressed: () {
                 // Handle forgot password navigation here
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ForgotPasswordScreen(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const ForgotPasswordScreen(),
+                //   ),
+                // );
+                Go.to(ForgotPasswordScreen());
               },
               child: Text(
                 'Forgot Password?',
@@ -198,10 +202,11 @@ class _LoginScreenState extends State<LoginScreen> {
       navigationLinktitle: navigationLinktitle,
       navigationOnPressed: () {
         // Handle sign up navigation here
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const SignupScreen()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => const SignupScreen()),
+        // );
+        Go.to(SignupScreen());
       },
     );
   }
@@ -221,7 +226,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Invalid email address')));
-      throw Exception('Invalid email address');
       // Show error message or handle invalid email
     } else if (password.isEmpty || password.length < 6) {
       // Show error message or handle invalid password

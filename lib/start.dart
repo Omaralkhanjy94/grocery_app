@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:grocery_app/go_routes.dart';
-import 'package:short_navigation/short_navigation.dart' show Go;
-import 'pages/splash_screen.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 /// The main entry point of the application.
 class Grocery extends StatelessWidget {

@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
-import '../../extensions/spaces_x.dart';
-import '../models/products.dart' show Product;
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/extensions_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class ProductWidget extends StatefulWidget {
   final Product product;
@@ -25,7 +24,7 @@ class _ProductWidgetState extends State<ProductWidget> {
   double get price => product.price;
 
   ///Product description
-  String? get description => product.description;
+  String? get description => product.note;
 
   ///Product isFavorite
   bool? get isFavorite => product.isFavorite;

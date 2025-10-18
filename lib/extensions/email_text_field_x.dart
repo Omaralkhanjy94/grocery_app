@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../core/login_page_position_top.dart';
-import '../../core/sign_up_page_position_top_r.dart';
-import 'change_content_position.dart';
+// import 'package:flutter/material.dart';
+import '../core/packages_manager/ui_imports.dart';
+// import 'package:google_fonts/google_fonts.dart';
+import '../core/packages_manager/network_imports.dart' show GoogleFonts;
+// import '../../core/login_page_position_top.dart';
+// import '../../core/sign_up_page_position_top_r.dart';
+import '../core/packages_manager/extensions_imports.dart'
+    show loginPagePositionTopR, signUpPagePositionTopR, ChangeContentPosition;
 
 /// Converting email text field to an extension for reusability
 extension EmailTextFieldX on String {

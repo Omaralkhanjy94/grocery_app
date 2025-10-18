@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'start.dart';
+import '../../core/packages_manager/ui_imports.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 void main() {

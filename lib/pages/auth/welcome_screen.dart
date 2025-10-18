@@ -1,11 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'welcome.dart';
-import '../../extensions/spaces_x.dart';
-import 'package:short_navigation/short_navigation.dart';
-import 'login_screen.dart';
-import 'signup_screen.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/extensions_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -116,12 +112,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         if (kDebugMode) {
           print('Create an account button pressed');
         }
-        // Go.toNamed('/signup');
+        Go.toName('/signup');
         // Navigate to SignupScreen using MaterialPageRoute to avoid route not found error
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const SignupScreen()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => const SignupScreen()),
+        // );
       },
       descriptionText: descriptionText,
       formWidgets: formWidgets,
@@ -130,10 +126,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       navigationOnPressed: () {
         // Handle login navigation here
         // For example, navigate to the LoginScreen
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => LoginScreen()),
+        // );
+        Go.toName('/login');
       },
     );
   }

@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../extensions/customization_string.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class CoverWidget extends StatelessWidget {
   final String imagePath;

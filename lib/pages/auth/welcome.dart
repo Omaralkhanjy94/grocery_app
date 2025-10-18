@@ -1,11 +1,7 @@
 import 'dart:ui';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../core/login_page_position_top.dart';
-import '../../core/sign_up_page_position_top_r.dart';
-import '../../widgets/custom_scaffold.dart';
-import '../../extensions/spaces_x.dart';
-import '../../main.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/extensions_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class Welcome extends StatelessWidget {
   final String? backgroundImage;

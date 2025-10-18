@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import "../core/packages_manager/ui_imports.dart";
 
 class CustomScaffold extends StatelessWidget {
   final Widget body;

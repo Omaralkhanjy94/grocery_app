@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+import '../core/packages_manager/ui_imports.dart' show SizedBox, EdgeInsets;
 
 /// Extension on [num] to provide easy access to [SizedBox] widgets for spacing.
 extension SizedBoxX on num {

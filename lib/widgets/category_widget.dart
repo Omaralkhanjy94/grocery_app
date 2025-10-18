@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../models/categories.dart';
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 class CategoryWidget extends StatelessWidget {
   final Category category;

@@ -1,14 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../core/sign_up_page_position_top_r.dart';
-import 'login_screen.dart';
-import 'welcome.dart';
-import '../../extensions/email_text_field_x.dart';
-import '../../extensions/password_text_field_x.dart';
-import '../../extensions/phone_number_x.dart';
-import '../../extensions/spaces_x.dart';
-import 'package:short_navigation/short_navigation.dart' show Go;
+import '../../core/packages_manager/ui_imports.dart';
+import '../../core/packages_manager/extensions_imports.dart';
+import '../../core/packages_manager/network_imports.dart';
 
 /// The SignupScreen widget
 class SignupScreen extends StatefulWidget {
@@ -125,11 +118,7 @@ class _SignupScreenState extends State<SignupScreen> {
         // Or using named routes if set up
         // Navigator.pushNamed(context, '/login');
         // Using Go class for navigation
-        // Go.toNamed('/login');
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
+        Go.toName('/login');
       },
     );
   }
