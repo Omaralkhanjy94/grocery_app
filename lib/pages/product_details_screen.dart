@@ -1,7 +1,7 @@
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
-import '../../core/packages_manager/data_imports.dart';
+// import '../../core/packages_manager/data_imports.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product product;
