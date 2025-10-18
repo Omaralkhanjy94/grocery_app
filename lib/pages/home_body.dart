@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: 'Categories',
           onViewAllPressed: () {
             // Handle view all categories action
+            Go.toName("/all_categories");
           },
         ),
 
@@ -105,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
   /// A method that returns a grid of products
   Widget getProductsGrid(List<Product> products) {
     return Flexible(
-      flex: 3,
+      flex: 8,
       child: GridView.builder(
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -120,8 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
               .map(
                 (product) => ProductWidget(
                   product: product,
-                  onTap: () =>
-                      Go.to(ProductDetailsScreen(product: product)),
+                  onTap: () => Go.to(ProductDetailsScreen(product: product)),
                 ),
               )
               .toList()[index];
@@ -212,9 +212,9 @@ class _HomeScreenState extends State<HomeScreen> {
   /// A widget that returns a horizontal list of categories
   Widget get getCategoriesList {
     return Flexible(
-      flex: 2,
+      flex: 3,
       child: SizedBox(
-        height: 100,
+        height: 80,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: categories.length,
