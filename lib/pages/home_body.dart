@@ -196,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
   /// A widget that returns the offers slide show with indicator dots
   Widget get getOffersSlideShow {
     return Flexible(
-      flex: 5,
+      flex: 10,
       fit: FlexFit.loose,
       child: Stack(
         children: [
@@ -212,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
   /// A widget that returns a horizontal list of categories
   Widget get getCategoriesList {
     return Flexible(
-      flex: 3,
+      flex: 4,
       child: SizedBox(
         height: 80,
         child: ListView.builder(

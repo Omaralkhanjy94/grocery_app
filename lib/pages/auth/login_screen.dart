@@ -1,14 +1,4 @@
 import 'package:flutter/foundation.dart';
-// import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import '../../core/login_page_position_top.dart';
-// import 'welcome.dart';
-// import '../../extensions/email_text_field_x.dart';
-// import '../../extensions/password_text_field_x.dart';
-// import '../../extensions/spaces_x.dart';
-// import 'package:short_navigation/short_navigation.dart';
-// import 'forgot_password_screen.dart';
-// import 'signup_screen.dart';
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
@@ -49,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   ///The navigation text and link title for the login screen
   final String navigationText = 'Don\'t have an account?';
 
-  ///The navigation link title for the login screen
+  ///The navigation link title for the sign up screen
   final String navigationLinktitle = 'Sign Up';
 
   ///To manage the state of the "Remember me" checkbox
@@ -206,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
         //   context,
         //   MaterialPageRoute(builder: (context) => const SignupScreen()),
         // );
-        Go.to(SignupScreen());
+        Go.toName('/signup');
       },
     );
   }
@@ -248,7 +238,12 @@ class _LoginScreenState extends State<LoginScreen> {
       );
       // Navigator.pushNamed(context, '/home');
       // Using Go class for navigation
-      Go.toReplaceName("/home");
+      if (logged_in == false) {
+        logged_in = true;
+        Go.back();
+      } else {
+        Go.toReplaceName("/home");
+      }
     }
 
     if (kDebugMode) {

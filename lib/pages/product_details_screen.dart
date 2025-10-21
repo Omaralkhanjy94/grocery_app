@@ -280,23 +280,34 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     //todo: ضع العنصر في قائمة المشتريات
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        backgroundColor: Color(0xFF6CC51D),
-                                        content: Text(
-                                          "Added $productName to the cart.",
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 18,
-                                            color: const Color.fromARGB(
-                                              255,
-                                              255,
-                                              255,
-                                              255,
+                                    if (logged_in == true)
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          backgroundColor: Color(0xFF6CC51D),
+                                          content: Text(
+                                            "Added $productName to the cart.",
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 18,
+                                              color: const Color.fromARGB(
+                                                255,
+                                                255,
+                                                255,
+                                                255,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    );
+                                      );
+                                    else {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return LoginScreen();
+                                        },
+                                      );
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: 0

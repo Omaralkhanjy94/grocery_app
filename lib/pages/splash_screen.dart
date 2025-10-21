@@ -128,7 +128,8 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 void navigateToNextScreen(BuildContext context) {
-  Navigator.pushReplacementNamed(context, '/welcome');
+  // Navigator.pushReplacementNamed(context, '/welcome');
+  Go.toReplaceName('/home');
 }
 
 class SplashScreen1 extends StatelessWidget {

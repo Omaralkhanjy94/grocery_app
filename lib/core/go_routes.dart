@@ -1,4 +1,5 @@
 import 'dart:collection';
+
 import '../core/packages_manager/ui_imports.dart';
 
 /// A class that defines the routes for the application.
@@ -13,6 +14,7 @@ class GoRoutes extends MapBase<String, WidgetBuilder> {
     '/login': (context) => LoginScreen(),
     // Add other routes here as needed
     '/signup': (context) => SignupScreen(),
+    '/all_categories': (context) => AllCategories(),
   };
 
   @override

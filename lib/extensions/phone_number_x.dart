@@ -1,25 +1,5 @@
-// import 'package:flutter/material.dart';
-// import '../../extensions/email_text_field_x.dart';
-import "../core/packages_manager/ui_imports.dart"
-    show
-        EmailTextFieldX,
-        Widget,
-        BuildContext,
-        TextEditingController,
-        TextField,
-        InputDecoration,
-        Color,
-        Colors,
-        Icon,
-        Icons,
-        OutlineInputBorder,
-        BorderRadius,
-        BorderSide,
-        EdgeInsets,
-        TextInputType;
-// import '../../extensions/change_content_position.dart';
-import '../core/packages_manager/extensions_imports.dart'
-    show ChangeContentPosition;
+import "../core/packages_manager/ui_imports.dart";
+import '../core/packages_manager/extensions_imports.dart';
 import '../core/packages_manager/network_imports.dart' show GoogleFonts;
 
 /// Converting phone number text field to an extension for reusability

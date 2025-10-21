@@ -1,5 +1,6 @@
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
+import '../core/packages_manager/extensions_imports.dart';
 
 class CoverWidget extends StatelessWidget {
   final String imagePath;
