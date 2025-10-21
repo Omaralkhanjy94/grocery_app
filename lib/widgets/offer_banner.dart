@@ -2,10 +2,10 @@ import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
 import '../core/packages_manager/extensions_imports.dart';
 
-class OfferBanner extends StatelessWidget {
+class CoverWidget extends StatelessWidget {
   final String imagePath;
   final String offerText;
-  const OfferBanner({
+  const CoverWidget({
     super.key,
     required this.imagePath,
     required this.offerText,
