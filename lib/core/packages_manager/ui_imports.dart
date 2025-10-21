@@ -2,7 +2,7 @@ export 'package:flutter/material.dart';
 export '../../../../models/offers.dart';
 export '../../../../models/categories.dart';
 export '../../../../models/products.dart';
-export '../../../../widgets/cover_widget.dart';
+export '../../widgets/offer_banner.dart';
 export '../../../../widgets/category_widget.dart';
 export '../../../../widgets/custom_scaffold.dart';
 export '../../../../widgets/product_widget.dart';
