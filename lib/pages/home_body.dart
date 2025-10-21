@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }),
       children: offers
           .map(
-            (offer) => CoverWidget(
+            (offer) => OfferBanner(
               key: ValueKey(offers.indexOf(offer)),
               imagePath: offer.imagePath,
               offerText: offer.offerText,
