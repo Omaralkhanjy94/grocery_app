@@ -11,6 +11,60 @@ class SplashScreen extends StatefulWidget {
 int currentIndexNow = 0;
 
 class _SplashScreenState extends State<SplashScreen> {
+  List<Widget> splashScreens = [
+    //splashscreen1
+    CustomSplashScreen(
+      pageTitle: "splashscreen1",
+      title1: Text("Welcome to", style: GoogleFonts.poppins(fontSize: 25)),
+      title2: Image.asset(
+        "assets/images/bigCart1.png",
+        width: 127,
+        height: 50,
+      ), //big cart image
+      description:
+          "Lorem ipsum dolor sit amet, consetetur"
+          "\nsadipscing elitr, sed diam nonumy",
+      imagePath: 'assets/images/b1.jpg',
+      currentIndex: 0,
+    ),
+
+    //splashscreen2
+    CustomSplashScreen(
+      pageTitle: "splashscreen2",
+      title1: Text("Buy Quality", style: GoogleFonts.poppins(fontSize: 25)),
+      title2: Text("Dairy Products", style: GoogleFonts.poppins(fontSize: 25)),
+      description:
+          "Lorem ipsum dolor sit amet, consetetur"
+          "\nsadipscing elitr, sed diam nonumy",
+      imagePath: 'assets/images/b2.jpg',
+      currentIndex: 1,
+    ),
+
+    // splashscreen3
+    CustomSplashScreen(
+      pageTitle: "splashscreen3",
+      title1: Text("Buy Premium", style: GoogleFonts.poppins(fontSize: 25)),
+      title2: Text("Quality Fruits", style: GoogleFonts.poppins(fontSize: 25)),
+      description:
+          "Lorem ipsum dolor sit amet, consetetur"
+          "\nsadipscing elitr, sed diam nonumy",
+      imagePath: 'assets/images/b3.jpg',
+      currentIndex: 2,
+    ),
+
+    // splashscreen4
+    CustomSplashScreen(
+      pageTitle: "splashscreen4",
+      title1: Text("Get Discounts", style: GoogleFonts.poppins(fontSize: 25)),
+      title2: Text("On All Products", style: GoogleFonts.poppins(fontSize: 25)),
+      description:
+          "Lorem ipsum dolor sit amet, consetetur"
+          "\nsadipscing elitr, sed diam nonumy",
+      imagePath: 'assets/images/b4.jpg',
+      currentIndex: 3,
+    ),
+  ];
+
   /// to control pageview
   final PageController pageController = PageController(
     initialPage: 0,
@@ -22,20 +76,25 @@ class _SplashScreenState extends State<SplashScreen> {
       title: 'Splash Screen',
       body: Stack(
         children: [
-          PageView(
-            onPageChanged: (int index) {
-              setState(() {
-                currentIndexNow = index;
-              });
-            },
-            controller: pageController,
-            scrollDirection: Axis.horizontal,
-            children: [
-              splashScreens[0],
-              splashScreens[1],
-              splashScreens[2],
-              splashScreens[3],
-            ],
+          CarouselSlider(
+            options: CarouselOptions(
+              height: MediaQuery.heightOf(context),
+              initialPage: 0,
+              viewportFraction: 1.0,
+              autoPlay: true,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (int index, reason) {
+                setState(() {
+                  currentIndexNow = index;
+                });
+              },
+            ),
+
+            carouselController: CarouselSliderController(),
+
+            items: splashScreens.map((splash) {
+              return splash;
+            }).toList(),
           ),
           //indicator dots
           Align(
@@ -117,115 +176,9 @@ class _SplashScreenState extends State<SplashScreen> {
       //making slide show with splashscreen1,2,3
     );
   }
-
-  //List of splash screens
-  List<Widget> splashScreens = [
-    SplashScreen1(),
-    SplashScreen2(),
-    SplashScreen3(),
-    SplashScreen4(),
-  ];
 }
 
 void navigateToNextScreen(BuildContext context) {
   // Navigator.pushReplacementNamed(context, '/welcome');
   Go.toReplaceName('/home');
-}
-
-class SplashScreen1 extends StatelessWidget {
-  const SplashScreen1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    currentIndexNow = 0;
-    return //splashscreen1
-    CustomSplashScreen(
-      pageTitle: "splashscreen1",
-      title1: Text("Welcome to", style: GoogleFonts.poppins(fontSize: 25)),
-      title2: Image.asset(
-        "assets/images/bigCart1.png",
-        width: 127,
-        height: 50,
-      ), //big cart image
-      description:
-          "Lorem ipsum dolor sit amet, consetetur"
-          "\nsadipscing elitr, sed diam nonumy",
-      imagePath: 'assets/images/b1.jpg',
-      currentIndex: 0,
-    );
-  }
-}
-
-class SplashScreen2 extends StatelessWidget {
-  SplashScreen2({super.key});
-
-  final String pageTitle = "splashscreen2";
-  final Widget title1 = Text(
-    "Buy Quality",
-    style: GoogleFonts.poppins(fontSize: 25),
-  );
-  final Widget title2 = Text(
-    "Dairy Products",
-    style: GoogleFonts.poppins(fontSize: 25),
-  );
-  final String description =
-      "Lorem ipsum dolor sit amet, consetetur"
-      "\nsadipscing elitr, sed diam nonumy";
-  final String imagePath = 'assets/images/b2.jpg';
-  final int currentIndex = 1;
-  @override
-  Widget build(BuildContext context) {
-    currentIndexNow = 1;
-    return //splashscreen2
-    //splashscreen2
-    CustomSplashScreen(
-      pageTitle: "splashscreen2",
-      title1: Text("Buy Quality", style: GoogleFonts.poppins(fontSize: 25)),
-      title2: Text("Dairy Products", style: GoogleFonts.poppins(fontSize: 25)),
-      description:
-          "Lorem ipsum dolor sit amet, consetetur"
-          "\nsadipscing elitr, sed diam nonumy",
-      imagePath: 'assets/images/b2.jpg',
-      currentIndex: 1,
-    );
-  }
-}
-
-class SplashScreen3 extends StatelessWidget {
-  const SplashScreen3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    currentIndexNow = 2;
-    return //splashscreen3
-    CustomSplashScreen(
-      pageTitle: "splashscreen3",
-      title1: Text("Buy Premium", style: GoogleFonts.poppins(fontSize: 25)),
-      title2: Text("Quality Fruits", style: GoogleFonts.poppins(fontSize: 25)),
-      description:
-          "Lorem ipsum dolor sit amet, consetetur"
-          "\nsadipscing elitr, sed diam nonumy",
-      imagePath: 'assets/images/b3.jpg',
-      currentIndex: 2,
-    );
-  }
-}
-
-class SplashScreen4 extends StatelessWidget {
-  const SplashScreen4({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return //splashscreen4
-    CustomSplashScreen(
-      pageTitle: "splashscreen4",
-      title1: Text("Get Discounts", style: GoogleFonts.poppins(fontSize: 25)),
-      title2: Text("On All Products", style: GoogleFonts.poppins(fontSize: 25)),
-      description:
-          "Lorem ipsum dolor sit amet, consetetur"
-          "\nsadipscing elitr, sed diam nonumy",
-      imagePath: 'assets/images/b4.jpg',
-      currentIndex: 3,
-    );
-  }
 }

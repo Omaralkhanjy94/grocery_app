@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^6.3.0
   short_navigation: ^2.3.0
   rate: ^0.0.2
+  carousel_slider: ^5.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

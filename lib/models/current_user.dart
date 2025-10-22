@@ -1,0 +1,2 @@
+String? currentUserEmail = "";
+String? currentUserPassword = "";

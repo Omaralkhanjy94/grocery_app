@@ -1,6 +1,7 @@
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
+import '../../core/packages_manager/data_imports.dart';
 
 class ProductWidget extends StatefulWidget {
   final Product product;

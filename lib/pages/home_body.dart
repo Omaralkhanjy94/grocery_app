@@ -15,47 +15,75 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(title: 'Home', body: buildBody);
+    return CustomScaffold(
+      title: 'Home',
+      body: buildBody,
+      bottomNavigationBar: //Done: the bottom navigation bar
+          getBottomNavigationBar,
+    );
   }
 
   /// A method that returns the main body widget
   Widget get buildBody {
-    Widget panelContent = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        //Done: search bar
-        getSearchBar,
-        10.height,
+    Widget panelContent = SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          //Done: search bar
+          getSearchBar,
+          10.height,
 
-        //[Done]: Make a slide show of cover images by CoverWidget using PageView
-        getOffersSlideShow, //offers slide show
-        //Done: categories
-        // A row with "Categories" text on the left and an arrow icon on the right
-        SessionWidget(
-          title: 'Categories',
-          onViewAllPressed: () {
-            // Handle view all categories action
-            Go.toName("/all_categories");
-          },
-        ),
+          //[Done]: Make a slide show of cover images by CoverWidget using PageView
+          getOffersSlideShow, //offers slide show
+          //Done: categories
+          // A row with "Categories" text on the left and an arrow icon on the right
+          SessionWidget(
+            title: 'Categories',
+            onViewAllPressed: () {
+              // Handle view all categories action
+              Go.toName("/all_categories");
+            },
+          ),
 
-        //Categories list
-        getCategoriesList,
+          //Categories list
+          getCategoriesList,
 
-        //Done: featured products
-        SessionWidget(
-          title: 'Featured Products',
-          onViewAllPressed: () {
-            // Handle view all featured products action
-          },
-        ),
+          //Done: featured products
+          SessionWidget(
+            title: 'Featured Products',
+            onViewAllPressed: () {
+              // Handle view all featured products action
+            },
+          ),
 
-        //Featured Products Grid
-        getProductsGrid(products),
-
-        //Done: the bottom navigation bar
-        getBottomNavigationBar,
-      ],
+          //Featured Products Grid
+          for (int i = 0; i < products.length; i += 2)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ProductWidget(
+                    product: products[i],
+                    onTap: () =>
+                        Go.to(ProductDetailsScreen(product: products[i])),
+                  ),
+                ),
+                SizedBox(width: 10),
+                if (i + 1 < products.length)
+                  Expanded(
+                    child: ProductWidget(
+                      product: products[i + 1],
+                      onTap: () =>
+                          Go.to(ProductDetailsScreen(product: products[i + 1])),
+                    ),
+                  )
+                else
+                  Expanded(child: SizedBox()), // لو عدد العناصر فردي
+              ],
+            ),
+        ],
+      ),
     );
 
     //Wrap the panel content in a container with constraints to avoid overflow
@@ -87,11 +115,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// A widget that returns a PageView for the offers slide show
   Widget get offersSlideShow {
-    return PageView(
-      onPageChanged: (value) => setState(() {
-        currentIndexNow = value;
-      }),
-      children: offers
+    return CarouselSlider(
+      carouselController: CarouselSliderController(),
+      options: CarouselOptions(
+        viewportFraction: 1,
+        height: 300.0,
+        autoPlay: true,
+        scrollDirection: Axis.horizontal,
+        onPageChanged: (index, reason) {
+          setState(() {
+            currentIndexNow = index;
+          });
+        },
+      ),
+      items: offers
           .map(
             (offer) => OfferBanner(
               key: ValueKey(offers.indexOf(offer)),
@@ -100,33 +137,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )
           .toList(),
-    );
-  }
-
-  /// A method that returns a grid of products
-  Widget getProductsGrid(List<Product> products) {
-    return Flexible(
-      flex: 8,
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          childAspectRatio: 0.60,
-        ),
-        itemCount: products.length, // Number of featured products
-        itemBuilder: (context, index) {
-          return products
-              .map(
-                (product) => ProductWidget(
-                  product: product,
-                  onTap: () => Go.to(ProductDetailsScreen(product: product)),
-                ),
-              )
-              .toList()[index];
-        },
-      ),
     );
   }
 
@@ -195,36 +205,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// A widget that returns the offers slide show with indicator dots
   Widget get getOffersSlideShow {
-    return Flexible(
-      flex: 10,
-      fit: FlexFit.loose,
-      child: Stack(
-        children: [
-          //Slide show of cover images
-          offersSlideShow,
-          //indicator for the slideshow
-          getIndicatorDots,
-        ],
-      ),
+    return Stack(
+      children: [
+        //Slide show of cover images
+        offersSlideShow,
+        //indicator for the slideshow
+        getIndicatorDots,
+      ],
     );
   }
 
   /// A widget that returns a horizontal list of categories
   Widget get getCategoriesList {
-    return Flexible(
-      flex: 4,
-      child: SizedBox(
-        height: 80,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: CategoryWidget(category: categories[index]),
-            );
-          },
-        ),
+    return SizedBox(
+      height: 80,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: CategoryWidget(category: categories[index]),
+          );
+        },
       ),
     );
   }

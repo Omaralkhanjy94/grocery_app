@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
+import '../../core/packages_manager/data_imports.dart';
 
 /// A StatefulWidget for the Login Screen
 class LoginScreen extends StatefulWidget {
@@ -116,6 +117,13 @@ class _LoginScreenState extends State<LoginScreen> {
               onTap: () {
                 setState(() {
                   _isChecked = !_isChecked;
+                  if (_isChecked == true) {
+                    User user = User(
+                      emailController.text.trim(),
+                      passwordController.text,
+                    );
+                    user.addUser();
+                  }
                 });
               },
               child: Row(

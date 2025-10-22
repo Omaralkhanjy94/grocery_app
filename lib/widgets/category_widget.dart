@@ -1,5 +1,6 @@
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
+import '../../core/packages_manager/data_imports.dart';
 
 class CategoryWidget extends StatelessWidget {
   final Category category;

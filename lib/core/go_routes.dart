@@ -5,10 +5,6 @@ import '../core/packages_manager/ui_imports.dart';
 /// A class that defines the routes for the application.
 class GoRoutes extends MapBase<String, WidgetBuilder> {
   final Map<String, WidgetBuilder> _routes = {
-    '/splash1': (context) => SplashScreen1(),
-    '/splash2': (context) => SplashScreen2(),
-    '/splash3': (context) => SplashScreen3(),
-    '/splash4': (context) => SplashScreen4(),
     '/home': (context) => HomeScreen(),
     '/welcome': (context) => WelcomeScreen(),
     '/login': (context) => LoginScreen(),
