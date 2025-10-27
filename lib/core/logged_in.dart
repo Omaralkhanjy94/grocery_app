@@ -1,1 +1,1 @@
-bool logged_in = false;
+bool userLoggedIn = false;

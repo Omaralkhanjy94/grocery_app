@@ -7,6 +7,8 @@ class CustomScaffold extends StatelessWidget {
   final bool resizeToAvoidBottomInset;
   final Widget? bottomNavigationBar;
   final Color? backgroundColor;
+  final bool showAppBarButtons;
+  final List<Widget>? appBarActions;
   const CustomScaffold({
     super.key,
     required this.body,
@@ -15,6 +17,8 @@ class CustomScaffold extends StatelessWidget {
     this.resizeToAvoidBottomInset = true,
     this.bottomNavigationBar,
     this.backgroundColor,
+    this.showAppBarButtons = false,
+    this.appBarActions,
   });
 
   @override
@@ -22,13 +26,22 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: showAppBar == true
-          ? AppBar(
-              title: Text(title),
-              centerTitle: true,
-              backgroundColor: Colors.transparent,
-              elevation: 1,
-              bottomOpacity: 1.9,
-            )
+          ? showAppBarButtons == true
+                ? AppBar(
+                    title: Text(title),
+                    centerTitle: true,
+                    backgroundColor: Colors.transparent,
+                    elevation: 1,
+                    bottomOpacity: 1.9,
+                    actions: appBarActions!,
+                  )
+                : AppBar(
+                    title: Text(title),
+                    centerTitle: true,
+                    backgroundColor: Colors.transparent,
+                    elevation: 1,
+                    bottomOpacity: 1.9,
+                  )
           : null,
       body: body,
       bottomNavigationBar: bottomNavigationBar,

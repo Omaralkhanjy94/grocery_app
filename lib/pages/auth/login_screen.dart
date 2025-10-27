@@ -246,8 +246,8 @@ class _LoginScreenState extends State<LoginScreen> {
       );
       // Navigator.pushNamed(context, '/home');
       // Using Go class for navigation
-      if (logged_in == false) {
-        logged_in = true;
+      if (userLoggedIn == false) {
+        userLoggedIn = true;
         Go.back();
       } else {
         Go.toReplaceName("/home");

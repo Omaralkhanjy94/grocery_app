@@ -280,7 +280,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     //todo: ضع العنصر في قائمة المشتريات
-                                    if (logged_in == true)
+                                    if (userLoggedIn == true)
                                       ScaffoldMessenger.of(
                                         context,
                                       ).showSnackBar(

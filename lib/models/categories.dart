@@ -61,6 +61,13 @@ class Categories {
         circleColor: const Color(0xffFFE8F2),
         onTap: () {},
       ),
+      Category(
+        id: '7',
+        name: 'BabyCare',
+        imagePath: 'assets/images/babyCare.png',
+        circleColor: const Color(0xFFD2EFFF),
+        onTap: () {},
+      ),
     ];
   }
 }

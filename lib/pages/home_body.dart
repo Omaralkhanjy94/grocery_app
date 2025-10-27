@@ -58,30 +58,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
           //Featured Products Grid
           for (int i = 0; i < products.length; i += 2)
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                Expanded(
-                  child: ProductWidget(
-                    product: products[i],
-                    onTap: () =>
-                        Go.to(ProductDetailsScreen(product: products[i])),
-                  ),
-                ),
-                SizedBox(width: 10),
-                if (i + 1 < products.length)
-                  Expanded(
-                    child: ProductWidget(
-                      product: products[i + 1],
-                      onTap: () =>
-                          Go.to(ProductDetailsScreen(product: products[i + 1])),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: ProductWidget(
+                        product: products[i],
+                        onTap: () =>
+                            Go.to(ProductDetailsScreen(product: products[i])),
+                      ),
                     ),
-                  )
-                else
-                  Expanded(child: SizedBox()), // لو عدد العناصر فردي
+                    SizedBox(width: 10),
+                    if (i + 1 < products.length)
+                      Expanded(
+                        child: ProductWidget(
+                          product: products[i + 1],
+                          onTap: () => Go.to(
+                            ProductDetailsScreen(product: products[i + 1]),
+                          ),
+                        ),
+                      )
+                    else
+                      Expanded(child: SizedBox()), // لو عدد العناصر فردي
+                  ],
+                ),
+                10.height,
               ],
             ),
+          120.height,
         ],
       ),
     );

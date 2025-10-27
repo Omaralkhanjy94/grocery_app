@@ -151,9 +151,19 @@ class _ProductWidgetState extends State<ProductWidget> {
               child: TextButton(
                 onPressed: () {
                   //todo: Handle add to cart button press
-                  setState(() {
-                    addedToCart = true;
-                  });
+                  if (userLoggedIn) {
+                    setState(() {
+                      addedToCart = true;
+                    });
+                  } else {
+                    Go.toName("/login");
+                  }
+                  if (addedToCart) {
+                    Cart.addProduct(product);
+                  }
+                  //printing the result
+                  allProductsToBePurchased.forEach((print));
+
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('$name has been added to your cart.'),
