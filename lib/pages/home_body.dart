@@ -230,9 +230,14 @@ class _HomeScreenState extends State<HomeScreen> {
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: CategoryWidget(category: categories[index]),
+          return InkWell(
+            onTap: () {
+              categories[index].onTap;
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: CategoryWidget(category: categories[index]),
+            ),
           );
         },
       ),

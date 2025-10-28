@@ -11,6 +11,7 @@ class GoRoutes extends MapBase<String, WidgetBuilder> {
     // Add other routes here as needed
     '/signup': (context) => SignupScreen(),
     '/all_categories': (context) => AllCategories(),
+    '/vegetables': (context) => VegetablesScreen(),
   };
 
   @override

@@ -1,3 +1,5 @@
+import "package:grocery_app/core/packages_manager/network_imports.dart";
+
 import "../core/packages_manager/ui_imports.dart";
 
 class CustomScaffold extends StatelessWidget {
@@ -28,7 +30,13 @@ class CustomScaffold extends StatelessWidget {
       appBar: showAppBar == true
           ? showAppBarButtons == true
                 ? AppBar(
-                    title: Text(title),
+                    title: Text(
+                      title,
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
                     centerTitle: true,
                     backgroundColor: Colors.transparent,
                     elevation: 1,

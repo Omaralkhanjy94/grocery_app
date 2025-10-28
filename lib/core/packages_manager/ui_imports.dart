@@ -15,6 +15,7 @@ export '../../pages/home_screen.dart';
 export '../../pages/auth/welcome.dart';
 export '../../pages/auth/forgot_password_screen.dart';
 export '../../pages/all_categories_screen.dart';
+export '../../pages/vegetables_screen.dart';
 export '../../core/logged_in.dart';
 export '../../core/colors.dart';
 export '../../start.dart';

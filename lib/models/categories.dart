@@ -1,5 +1,6 @@
 // import 'package:flutter/material.dart';
 import '../core/packages_manager/ui_imports.dart' show Color, VoidCallback;
+import '../core/packages_manager/network_imports.dart' show Go;
 
 class Category {
   final String id;
@@ -24,7 +25,9 @@ class Categories {
         name: 'Vegetables',
         imagePath: 'assets/images/vegetables.png',
         circleColor: const Color(0xffE6F2EA),
-        onTap: () {},
+        onTap: () {
+          Go.toName("/vegetables");
+        },
       ),
       Category(
         id: '2',
