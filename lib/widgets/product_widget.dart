@@ -24,6 +24,9 @@ class _ProductWidgetState extends State<ProductWidget> {
   ///Product price
   double get price => product.price;
 
+  ///Currency
+  String get currency => product.currency!;
+
   ///Product description
   String? get description => product.note;
 
@@ -104,7 +107,9 @@ class _ProductWidgetState extends State<ProductWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Center(
                 child: Text(
-                  '\$${price.toStringAsFixed(2)}',
+                  currency == "USA"
+                      ? '\$${price.toStringAsFixed(2)}'
+                      : '${price.toStringAsFixed(2)}$currency',
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,

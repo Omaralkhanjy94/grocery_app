@@ -1,11 +1,11 @@
 import '../core/packages_manager/ui_imports.dart'
     show Widget, StatelessWidget, BuildContext, CategoryProductsWidget;
 
-class VegetablesScreen extends StatelessWidget {
-  const VegetablesScreen({super.key});
+class HouseholdScreen extends StatelessWidget {
+  const HouseholdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return CategoryProductsWidget("Vegetables", 1);
+    return CategoryProductsWidget("Household", 6);
   }
 }

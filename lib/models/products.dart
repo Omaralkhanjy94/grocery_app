@@ -12,6 +12,7 @@ class Product {
   Color? circleColor;
   double? rating;
   int categoryID;
+  String? currency;
 
   Product({
     required this.id,
@@ -24,6 +25,7 @@ class Product {
     this.circleColor,
     this.rating,
     required this.categoryID,
+    this.currency = "USA",
   });
 }
 
@@ -133,6 +135,63 @@ class Products {
         circleColor: const Color.fromARGB(255, 173, 233, 161),
         isFavorite: false,
         rating: 4.7,
+      ),
+      Product(
+        id: '9',
+        name: 'Almarai Orange Juice',
+        imagePath: 'assets/images/AlmaraiOrangeJuice.png',
+        price: 2.13,
+        categoryID: 3,
+        note: '1.4 L',
+        description:
+            ' for any occasion. Made from the finest and juiciest sun-ripened oranges, it delivers a delightful balance of sweet and tangy flavors. The juice is a great source of Vitamin C and antioxidants, making it a healthy and energizing addition to your diet.'
+            'y features include:'
+            '100% natural options: Certain varieties, such as the 100% Juice line, are cold-pressed and contain no added sugars or artificial additives.'
+            'A variety of products: Almarai offers different types of orange juice, including premium, fresh, and mixed fruit options, with some available with pulp for added texture.'
+            'Perfectly packaged: Available in a range of convenient sizes, from small bottles for on-the-go to large cartons for the whole family.'
+            'Refreshing and invigorating: Whether you enjoy it with breakfast or as a quick pick-me-up, its zesty and satisfying taste will invigorate your senses.'
+            'This high-quality juice is known for its pure and fresh taste, making it a popular choice for both children and adults.',
+        circleColor: const Color.fromARGB(255, 255, 233, 184),
+        isFavorite: false,
+        rating: 5.0,
+      ),
+
+      Product(
+        id: '10',
+        name: 'Eggs',
+        imagePath: 'assets/images/eggs.png',
+        price: 3.15,
+        categoryID: 4,
+        note: '30 eggs',
+        description:
+            ' countless ways. Whether fried, scrambled, or poached, they offer'
+            'a rich, creamy texture and a satisfying flavor. Often seasoned si'
+            'mply with salt and pepper, they can also be enhanced with herbs, '
+            'cheese, and vegetables for a more complex and savory experience.',
+        circleColor: const Color.fromARGB(255, 171, 221, 255),
+        isFavorite: false,
+        rating: 3.5,
+      ),
+
+      Product(
+        id: '11',
+        name: 'Olives Oil',
+        imagePath: 'assets/images/olives_oil.png',
+        price: 22.0,
+        categoryID: 5,
+        note: '500 ML',
+        description:
+            '100% single sourced estate-owned EVOO made with pressed Koroneiki'
+            ' olives.\n Picked the old-fashioned way from the island of Crete,'
+            ' cold pressed, and hand bottled.\nDeliciously full-bodied taste'
+            ' has distinctive flavor with no bitterness or bad aftertaste\n'
+            'High smoke point makes our product perfect for all types of'
+            ' cooking with old world Greek flavor\n'
+            'Certified extra-virgin by chemical analysis showing an acidity'
+            ' between .2 and .4 %.',
+        circleColor: const Color(0xFFE2EEC1),
+        isFavorite: false,
+        rating: 3.5,
       ),
     ];
   }

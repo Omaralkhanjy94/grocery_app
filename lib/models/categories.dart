@@ -34,42 +34,54 @@ class Categories {
         name: 'Fruits',
         imagePath: 'assets/images/fruits.png',
         circleColor: const Color(0xffFFF0E5),
-        onTap: () {},
+        onTap: () {
+          Go.toName("/fruits");
+        },
       ),
       Category(
         id: '3',
         name: 'Beverages',
         imagePath: 'assets/images/beverages.png',
         circleColor: const Color(0xffFFF6E3),
-        onTap: () {},
+        onTap: () {
+          Go.toName("/beverages");
+        },
       ),
       Category(
         id: '4',
         name: 'Grocery',
         imagePath: 'assets/images/grocery.png',
         circleColor: const Color(0xffF3EFFA),
-        onTap: () {},
+        onTap: () {
+          Go.toName("/grocery");
+        },
       ),
       Category(
         id: '5',
         name: 'Edible oil',
         imagePath: 'assets/images/edible_oil.png',
         circleColor: const Color(0xffDCF4F5),
-        onTap: () {},
+        onTap: () {
+          Go.toName("/edible_oils");
+        },
       ),
       Category(
         id: '6',
         name: 'Household',
         imagePath: 'assets/images/Household.png',
         circleColor: const Color(0xffFFE8F2),
-        onTap: () {},
+        onTap: () {
+          Go.toName("/household");
+        },
       ),
       Category(
         id: '7',
         name: 'BabyCare',
         imagePath: 'assets/images/babyCare.png',
         circleColor: const Color(0xFFD2EFFF),
-        onTap: () {},
+        onTap: () {
+          Go.toName("/babycare");
+        },
       ),
     ];
   }

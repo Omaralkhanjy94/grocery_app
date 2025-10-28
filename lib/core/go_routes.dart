@@ -1,5 +1,8 @@
 import 'dart:collection';
 
+import 'package:grocery_app/pages/edible_oils_screen.dart';
+import 'package:grocery_app/pages/household_screen.dart';
+
 import '../core/packages_manager/ui_imports.dart';
 
 /// A class that defines the routes for the application.
@@ -12,6 +15,12 @@ class GoRoutes extends MapBase<String, WidgetBuilder> {
     '/signup': (context) => SignupScreen(),
     '/all_categories': (context) => AllCategories(),
     '/vegetables': (context) => VegetablesScreen(),
+    '/fruits': (context) => FruitesScreen(),
+    '/beverages': (context) => BeveragesScreen(),
+    '/grocery': (context) => GroceryScreen(),
+    '/edible_oils': (context) => EdibleOilsScreen(),
+    '/household': (context) => HouseholdScreen(),
+    '/babycare': (context) => BabycareScreen(),
   };
 
   @override
