@@ -1,52 +1,26 @@
+import 'package:grocery_app/stateManager/cubit/cart_cubit.dart';
+
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
 import '../../core/packages_manager/data_imports.dart';
+import '../../core/packages_manager/state_imports.dart'
+    show
+        AuthCubit,
+        AuthSuccess,
+        ProductsCubit,
+        CartCubit,
+        ProductQuantityCubit,
+        ProductQuantityState,
+        ProductQuantityError,
+        ProductQuantityInitial,
+        ProductQuantityUpdated;
 
-class ProductWidget extends StatefulWidget {
+class ProductWidget extends StatelessWidget {
   final Product product;
   final VoidCallback? onTap;
   const ProductWidget({super.key, required this.product, this.onTap});
 
-  @override
-  State<ProductWidget> createState() => _ProductWidgetState();
-}
-
-class _ProductWidgetState extends State<ProductWidget> {
-  Product get product => widget.product;
-
-  ///Product name
-  String get name => product.name;
-
-  ///Product image
-  String get imagePath => product.imagePath;
-
-  ///Product price
-  double get price => product.price;
-
-  ///Currency
-  String get currency => product.currency!;
-
-  ///Product description
-  String? get description => product.note;
-
-  ///Product isFavorite
-  bool? get isFavorite => product.isFavorite;
-  set isFavorite(bool? value) {
-    product.isFavorite = value;
-  }
-
-  ///Product circle color
-  Color? get circleColor => product.circleColor;
-
-  ///On tap function
-  VoidCallback? get onTap => widget.onTap;
-
-  /// Whether the product has been added to the cart
-  bool addedToCart = false;
-
-  /// The quantity of the product in the cart
-  int quantity = 1;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -72,12 +46,17 @@ class _ProductWidgetState extends State<ProductWidget> {
               alignment: Alignment.topRight,
               child: IconButton(
                 icon: Icon(
-                  isFavorite == true ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorite == true ? Colors.red : Colors.grey,
+                  product.isFavorite == true
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: product.isFavorite == true ? Colors.red : Colors.grey,
                 ),
                 onPressed: () {
                   // Handle favorite button press
-                  product.isFavorite = !(product.isFavorite ?? false);
+                  // setState(() {
+                  //   product.isFavorite = !product.isFavorite!;
+                  // });
+                  context.read<ProductsCubit>().toggleFavoriteStatus(product);
                   (context as Element).markNeedsBuild();
                 },
               ),
@@ -89,12 +68,12 @@ class _ProductWidgetState extends State<ProductWidget> {
                 height: 110,
                 width: 110,
                 decoration: BoxDecoration(
-                  color: circleColor ?? Colors.grey.shade200,
+                  color: product.circleColor ?? Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(100),
                 ),
                 padding: const EdgeInsets.all(5),
                 child: Image.asset(
-                  imagePath,
+                  product.imagePath,
                   height: 80,
                   width: 80,
                   fit: BoxFit.contain,
@@ -107,9 +86,9 @@ class _ProductWidgetState extends State<ProductWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Center(
                 child: Text(
-                  currency == "USA"
-                      ? '\$${price.toStringAsFixed(2)}'
-                      : '${price.toStringAsFixed(2)}$currency',
+                  product.currency == "USA"
+                      ? '\$${product.price.toStringAsFixed(2)}'
+                      : '${product.price.toStringAsFixed(2)}${product.currency}',
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w300,
@@ -125,7 +104,7 @@ class _ProductWidgetState extends State<ProductWidget> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Center(
                 child: Text(
-                  name,
+                  product.name,
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -136,10 +115,10 @@ class _ProductWidgetState extends State<ProductWidget> {
               ),
             ),
             //Product Description
-            if (description != null)
+            if (product.description != null)
               Center(
                 child: Text(
-                  description!,
+                  product.description!,
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -155,96 +134,144 @@ class _ProductWidgetState extends State<ProductWidget> {
               height: 33,
               child: TextButton(
                 onPressed: () {
-                  //todo: Handle add to cart button press
-                  if (userLoggedIn) {
-                    setState(() {
-                      addedToCart = true;
-                    });
+                  // Handle add to cart button press
+                  if (context.read<AuthCubit>().state is AuthSuccess) {
+                    // setState(() {
+                    //   addedToCart = true;
+                    // });
+                    context.read<CartCubit>().addToCart(product);
                   } else {
                     Go.toName("/login");
-                  }
-                  if (addedToCart) {
-                    Cart.addProduct(product);
                   }
                   //printing the result
                   allProductsToBePurchased.forEach((print));
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('$name has been added to your cart.'),
+                      content: Text(
+                        '${product.name} has been added to your cart.',
+                      ),
                     ),
                   );
                 },
-                child: addedToCart
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              if (quantity > 1) {
-                                quantity--;
-                                (context as Element).markNeedsBuild();
-                              }
-                              if (quantity == 1) {
-                                setState(() {
-                                  addedToCart = false;
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        '$name has been removed from your cart.',
-                                      ),
-                                    ),
-                                  );
-                                });
-                              }
-                            },
-                            icon: Icon(
-                              Icons.remove,
-                              size: 12,
-                              color: Color(0xFF6CC51D),
-                            ),
-                          ),
-                          Text(
-                            quantity.toString(),
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              quantity++;
-                              (context as Element).markNeedsBuild();
-                            },
-                            icon: Icon(
-                              Icons.add,
-                              size: 16,
-                              color: Color(0xFF6CC51D),
-                            ),
-                          ),
-                        ],
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.shopping_bag_outlined,
-                            size: 16,
-                            color: Color(0xFF6CC51D),
-                          ),
-                          5.width,
-                          Text(
+                child: BlocBuilder<CartCubit, CartState>(
+                  builder: (context, state) {
+                    return state is CartInitial
+                        ? Text(
                             'Add to Cart',
                             style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF6CC51D),
                             ),
-                          ),
-                        ],
-                      ),
+                          )
+                        : state is CartUpdated?
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              BlocBuilder<
+                                ProductQuantityCubit,
+                                ProductQuantityState
+                              >(
+                                builder: (context, state) {
+                                  if (state is ProductQuantityInitial) {
+                                    context
+                                        .read<ProductQuantityCubit>()
+                                        .initializeQuantity();
+                                  } else if (state is ProductQuantityUpdated) {
+                                    context
+                                            .read<ProductQuantityCubit>()
+                                            .quantity =
+                                        state.quantity;
+                                  } else if (state is ProductQuantityError) {
+                                    return Text(
+                                      state.message,
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.red,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    );
+                                  }
+                                  return IconButton(
+                                    onPressed: () {
+                                      if (context
+                                              .read<ProductQuantityCubit>()
+                                              .quantity >
+                                          1) {
+                                        context
+                                            .read<ProductQuantityCubit>()
+                                            .quantity--;
+                                      }
+                                      (context as Element).markNeedsBuild();
+                                      if (context
+                                              .read<ProductQuantityCubit>()
+                                              .quantity ==
+                                          1) {
+                                        context
+                                            .read<CartCubit>()
+                                            .removeFromCart(product);
+                                        context
+                                            .read<ProductQuantityCubit>()
+                                            .initializeQuantity();
+                                      }
+                                    },
+                                    icon: Icon(
+                                      Icons.remove,
+                                      size: 12,
+                                      color: Color(0xFF6CC51D),
+                                    ),
+                                  );
+                                },
+                              ),
+                              Text(
+                                context
+                                    .read<ProductQuantityCubit>()
+                                    .quantity
+                                    .toString(),
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<ProductQuantityCubit>()
+                                      .incrementQuantity();
+                                  (context as Element).markNeedsBuild();
+                                },
+                                icon: Icon(
+                                  Icons.add,
+                                  size: 16,
+                                  color: Color(0xFF6CC51D),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.shopping_bag_outlined,
+                                size: 16,
+                                color: Color(0xFF6CC51D),
+                              ),
+                              5.width,
+                              Text(
+                                'Add to Cart',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          );
+                  },
+                ),
               ),
             ),
           ],

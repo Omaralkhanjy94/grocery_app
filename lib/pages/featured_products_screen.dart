@@ -1,13 +1,16 @@
-import 'package:grocery_app/stateManager/cubit/products_cubit.dart';
-
 import '../core/packages_manager/ui_imports.dart';
 import '../core/packages_manager/network_imports.dart';
-import '../core/packages_manager/data_imports.dart';
+import '../core/packages_manager/state_imports.dart'
+    show
+        ProductsCubit,
+        ProductsInitial,
+        ProductsState,
+        ProductsLoading,
+        ProductsError,
+        ProductsLoaded;
 
-class CategoryProductsWidget extends StatelessWidget {
-  final String title;
-  final int categoryID;
-  const CategoryProductsWidget(this.title, this.categoryID, {super.key});
+class FeaturedProductsScreen extends StatelessWidget {
+  const FeaturedProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +23,7 @@ class CategoryProductsWidget extends StatelessWidget {
           BlocBuilder<ProductsCubit, ProductsState>(
             builder: (context, state) {
               if (state is ProductsInitial) {
-                context.read<ProductsCubit>().fetchProductsByCategory(
-                  categoryID,
-                );
+                context.read<ProductsCubit>().fetchFeaturedProducts();
               } else if (state is ProductsLoading) {
                 return Center(
                   child: CircularProgressIndicator(color: secondaryColor),
@@ -40,14 +41,10 @@ class CategoryProductsWidget extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 child: Builder(
                   builder: (context) {
-                    // final filtered = products
-                    //     .where((p) => p.categoryID == categoryID)
-                    //     .toList();
-                    final filtered = state is ProductsLoaded
-                        ? state.products
-                        : <Product>[];
                     return GridView.builder(
-                      itemCount: filtered.length,
+                      itemCount: /*products.length*/ (state is ProductsLoaded
+                          ? state.products.length
+                          : 0),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
@@ -56,7 +53,10 @@ class CategoryProductsWidget extends StatelessWidget {
                       ),
                       physics: BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
-                        final product = filtered[index];
+                        // final product = products[index];
+                        final product = (state is ProductsLoaded
+                            ? state.products[index]
+                            : null)!;
                         return ProductWidget(
                           product: product,
                           onTap: () =>
@@ -69,7 +69,7 @@ class CategoryProductsWidget extends StatelessWidget {
               );
             },
           ),
-      title: title,
+      title: "Featured Products",
       appBarActions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.tune, size: 30)),
       ],

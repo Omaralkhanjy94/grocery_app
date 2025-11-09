@@ -1,36 +1,19 @@
+import 'package:grocery_app/core/packages_manager/state_imports.dart';
+
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
 import '../../core/packages_manager/data_imports.dart';
 
-class ProductDetailsScreen extends StatefulWidget {
+class ProductDetailsScreen extends StatelessWidget {
   final Product product;
-  const ProductDetailsScreen({super.key, required this.product});
-
-  @override
-  State<StatefulWidget> createState() => _ProductDetailsScreenState();
-}
-
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  String get productName => widget.product.name;
-  String get productNote => widget.product.note!;
-  String get productDescription => widget.product.description!;
-  double get productPrice => widget.product.price;
-  String get productImagePath => widget.product.imagePath;
-  double get productRating => widget.product.rating!;
-  Color get productCircleColor => widget.product.circleColor!;
-
-  ///favorite button state
-  bool isFavorite = false;
-
-  /// product quantity
-  int quantity = 1;
+  ProductDetailsScreen({super.key, required this.product});
 
   /// Build method to create the UI of the product details screen
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      title: productName,
+      title: product.name,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -50,7 +33,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           height: MediaQuery.sizeOf(context).width / 1.11,
                           width: MediaQuery.sizeOf(context).width,
                           decoration: BoxDecoration(
-                            color: productCircleColor,
+                            color: product.circleColor,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(300),
                               bottomRight: Radius.circular(300),
@@ -64,7 +47,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           width: 295,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(productImagePath),
+                              image: AssetImage(product.imagePath),
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -93,13 +76,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         right: 16,
                         child: IconButton(
                           onPressed: () {
-                            setState(() {
-                              isFavorite = !isFavorite;
-                            });
+                            // setState(() {
+                            //   isFavorite = !isFavorite;
+                            // });
+                            context.read<ProductsCubit>().toggleFavoriteStatus(
+                              product,
+                            );
                           },
                           icon: Icon(
-                            isFavorite ? Icons.favorite : Icons.favorite_border,
-                            color: isFavorite ? Colors.red : Color(0xFF868889),
+                            product.isFavorite!
+                                ? Icons.favorite
+                                : Icons.favorite_border,
+                            color: product.isFavorite!
+                                ? Colors.red
+                                : Color(0xFF868889),
                             size: 30,
                           ),
                         ),
@@ -114,7 +104,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           children: [
                             // Product price
                             Text(
-                              '\$${productPrice.toStringAsFixed(2)}',
+                              '\$${product.price.toStringAsFixed(2)}',
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
@@ -123,7 +113,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             // Product name
                             Text(
-                              productName,
+                              product.name,
                               style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -131,7 +121,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
                             // Product note
                             Text(
-                              productNote,
+                              product.note!,
                               style: GoogleFonts.poppins(
                                 fontSize: 12,
                                 color: Color(0xFF868889),
@@ -144,7 +134,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  productRating.toStringAsFixed(1),
+                                  product.rating!.toStringAsFixed(1),
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: Colors.black,
@@ -157,7 +147,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   color: Color(0xFFFFC107),
                                   allowHalf: true,
                                   allowClear: false,
-                                  initialValue: productRating,
+                                  initialValue: product.rating!,
                                   readOnly: true,
                                 ),
                                 //The Number of reviews
@@ -173,7 +163,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             10.height,
 
                             //Product description
-                            productDescription.more(
+                            product.description!.more(
                               trimLength:
                                   MediaQuery.sizeOf(context).width.toInt() -
                                   100,
@@ -219,9 +209,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          setState(() {
-                                            if (quantity > 1) quantity--;
-                                          });
+                                          context
+                                              .read<ProductsCubit>()
+                                              .decrementQuantity(product);
                                         },
                                         child: Text(
                                           "-",
@@ -239,7 +229,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       ),
                                       15.width,
                                       Text(
-                                        quantity.toString(),
+                                        product.quantity!.toString(),
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           color: Color(0xFF000000),
@@ -254,9 +244,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       //add
                                       InkWell(
                                         onTap: () {
-                                          setState(() {
-                                            quantity++;
-                                          });
+                                          // setState(() {
+                                          //   quantity++;
+                                          // });
+                                          context
+                                              .read<ProductsCubit>()
+                                              .incrementQuantity(product);
                                         },
                                         child: Text(
                                           "+",
@@ -287,7 +280,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         SnackBar(
                                           backgroundColor: Color(0xFF6CC51D),
                                           content: Text(
-                                            "Added $productName to the cart.",
+                                            "Added ${product.name} to the cart.",
                                             style: GoogleFonts.poppins(
                                               fontSize: 18,
                                               color: const Color.fromARGB(

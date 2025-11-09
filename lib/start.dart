@@ -11,7 +11,7 @@ class Grocery extends StatelessWidget {
       navigatorKey: Go.navigatorKey,
       title: 'Grocery App',
       theme: ThemeData(primarySwatch: Colors.green),
-      home: SplashScreen(),
+      initialRoute: '/splash',
       routes: GoRoutes(),
     );
   }

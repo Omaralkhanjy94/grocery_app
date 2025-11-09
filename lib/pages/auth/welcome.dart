@@ -14,7 +14,7 @@ class Welcome extends StatelessWidget {
   final String navigationLinktitle;
   final VoidCallback navigationOnPressed;
   final double positionedTop;
-  Welcome({
+  const Welcome({
     super.key,
     this.backgroundImage,
     required this.titleText,

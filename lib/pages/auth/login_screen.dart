@@ -3,16 +3,12 @@ import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
 import '../../core/packages_manager/data_imports.dart';
+import '../../core/packages_manager/state_imports.dart';
 
-/// A StatefulWidget for the Login Screen
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+/// A StatelessWidget for the Login Screen
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
   ///Email TextEditingController
   final TextEditingController emailController = TextEditingController();
 
@@ -43,19 +39,17 @@ class _LoginScreenState extends State<LoginScreen> {
   ///The navigation link title for the sign up screen
   final String navigationLinktitle = 'Sign Up';
 
-  ///To manage the state of the "Remember me" checkbox
-  bool _isChecked = false;
-
-  ///Counting the times of pressing on the login button
-  int _elevatedButtonPressedCount = 0;
-
-  ///To manage the state of the password visibility
-  bool isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return Welcome(
       positionedTop:
-          MediaQuery.of(context).size.height * 2 / loginPagePositionTopR,
+          // MediaQuery.of(context).size.height * 2 / loginPagePositionTopR,
+          context.watch<LoginFormPositionCubit>().state
+              is LoginFormPositionUpdated
+          ? (context.watch<LoginFormPositionCubit>().state
+                    as LoginFormPositionUpdated)
+                .topPosition
+          : MediaQuery.of(context).size.height * 2 / loginPagePositionTopR,
       titleText: titleText,
       backgroundImage: backgroundImage,
       elevatedButtonChild: elevatedButtonChild,
@@ -64,17 +58,13 @@ class _LoginScreenState extends State<LoginScreen> {
           print(
             'Email: ${emailController.text.trim()}, Password: ${passwordController.text}',
           );
-          //Incrementing the counter of pressing on the login button
-          _elevatedButtonPressedCount++;
-          //Printing the counter of pressing on the login button
-          print('Login button pressed $_elevatedButtonPressedCount times');
         }
 
         // Simulate a login process
-        await login(
-          email: emailController.text.trim(),
-          password: passwordController.text,
-        );
+        // Using AuthCubit to handle login
+        BlocProvider.of<AuthCubit>(
+          context,
+        ).login(emailController.text.trim(), passwordController.text);
       },
       descriptionText: descriptionText,
       formWidgets: [
@@ -85,13 +75,18 @@ class _LoginScreenState extends State<LoginScreen> {
         //Password TextField with lock icon and hint text
         PasswordTextFieldX(
           passwordController: passwordController,
-          isPasswordVisible: isPasswordVisible,
+          isPasswordVisible:
+              BlocProvider.of<IsPasswordVisibleCubit>(context).state
+                  is IsPasswordVisible,
           hintText: "Password",
           onPressed: () {
             // Handle password visibility toggle if needed
-            setState(() {
-              isPasswordVisible = !isPasswordVisible;
-            });
+            // setState(() {
+            //   isPasswordVisible = !isPasswordVisible;
+            // });
+            BlocProvider.of<IsPasswordVisibleCubit>(
+              context,
+            ).togglePasswordVisibility();
           },
           suffixIcon: IconButton(
             icon: Icon(
@@ -101,9 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
               color: Colors.grey[600],
             ),
             onPressed: () {
-              setState(() {
-                isPasswordVisible = !isPasswordVisible;
-              });
+              // setState(() {
+              //   isPasswordVisible = !isPasswordVisible;
+              // });
+              BlocProvider.of<IsPasswordVisibleCubit>(
+                context,
+              ).togglePasswordVisibility();
             },
           ),
         ),
@@ -112,19 +110,19 @@ class _LoginScreenState extends State<LoginScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            //Checkbox and forgot password row
+            //Checkbox for remember me
             InkWell(
               onTap: () {
-                setState(() {
-                  _isChecked = !_isChecked;
-                  if (_isChecked == true) {
-                    User user = User(
-                      emailController.text.trim(),
-                      passwordController.text,
-                    );
-                    user.addUser();
-                  }
-                });
+                // _isChecked = !_isChecked;
+                BlocProvider.of<RememberMeCubit>(context).state
+                        is RememberMeUnchecked
+                    ? BlocProvider.of<RememberMeCubit>(context).check()
+                    : BlocProvider.of<RememberMeCubit>(context).uncheck();
+                if (BlocProvider.of<RememberMeCubit>(context).state
+                    is RememberMeChecked) {
+                  currentUserEmail = emailController.text.trim();
+                  currentUserPassword = passwordController.text;
+                }
               },
               child: Row(
                 children: [
@@ -141,7 +139,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     child: Row(
-                      mainAxisAlignment: _isChecked
+                      mainAxisAlignment:
+                          BlocProvider.of<RememberMeCubit>(context).state
+                              is RememberMeChecked
                           ? MainAxisAlignment.end
                           : MainAxisAlignment.start,
                       children: [
@@ -207,56 +207,5 @@ class _LoginScreenState extends State<LoginScreen> {
         Go.toName('/signup');
       },
     );
-  }
-
-  /// Simulating Login
-  Future<void> login({required String email, required String password}) {
-    //todo: Handle home screen if login is successful
-    // Handle Sign Up logic here
-    if (kDebugMode) {
-      _elevatedButtonPressedCount++;
-      print('Login button pressed $_elevatedButtonPressedCount');
-    }
-
-    if (email.isEmpty || !email.contains('@')) {
-      // Show error message or handle invalid email
-      //Showing an exception if the email is invalid using Snackbar
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Invalid email address')));
-      // Show error message or handle invalid email
-    } else if (password.isEmpty || password.length < 6) {
-      // Show error message or handle invalid password
-      //Showing an exception if the password is invalid using Snackbar
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Password must be at least 6 characters long'),
-        ),
-      );
-      throw Exception('Password must be at least 6 characters long');
-    } else {
-      //Showing an exception if the email is invalid using Snackbar
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            //Showing the email in the snackbar message
-            'Welcome back, $email!, you have logged in successfully.',
-          ),
-        ),
-      );
-      // Navigator.pushNamed(context, '/home');
-      // Using Go class for navigation
-      if (userLoggedIn == false) {
-        userLoggedIn = true;
-        Go.back();
-      } else {
-        Go.toReplaceName("/home");
-      }
-    }
-
-    if (kDebugMode) {
-      print('You has logged in successfully!\n the user email: $email');
-    }
-    return Future.delayed(const Duration(seconds: 2));
   }
 }

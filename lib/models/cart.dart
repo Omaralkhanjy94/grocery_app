@@ -6,6 +6,10 @@ class Cart {
   static void addProduct(Product product) {
     allProductsToBePurchased.add(product);
   }
+
+  static void removeProduct(Product product) {
+    allProductsToBePurchased.remove(product);
+  }
 }
 
 List<Product> allProductsToBePurchased = [];

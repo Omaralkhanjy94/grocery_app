@@ -1,8 +1,8 @@
 // import 'package:flutter/material.dart';
-import '../core/packages_manager/ui_imports.dart' show Color;
+import '../core/packages_manager/ui_imports.dart' show Color, Colors;
 
 class Product {
-  final String id;
+  final int id;
   String name;
   String imagePath;
   double price;
@@ -13,6 +13,7 @@ class Product {
   double? rating;
   int categoryID;
   String? currency;
+  int? quantity;
 
   Product({
     required this.id,
@@ -26,14 +27,27 @@ class Product {
     this.rating,
     required this.categoryID,
     this.currency = "USA",
+    this.quantity = 0,
   });
+
+  ///Mapping to all products data model
+  Map<String, dynamic> get toMap => {
+    'id': id,
+    'name': name,
+    'imagePath': imagePath,
+    'price': price,
+    'currency': currency,
+    'description': description,
+    'isFavorite': isFavorite,
+    'circleColor': circleColor ?? Colors.white,
+  };
 }
 
 class Products {
   static List<Product> getProducts() {
     return [
       Product(
-        id: '1',
+        id: 1,
         name: 'Fresh Peach',
         imagePath: 'assets/images/peach.png',
         price: 8.00,
@@ -46,7 +60,7 @@ class Products {
         rating: 5.0,
       ),
       Product(
-        id: '2',
+        id: 2,
         name: 'Avocado',
         imagePath: 'assets/images/avocado.png',
         price: 7.00,
@@ -59,7 +73,7 @@ class Products {
         rating: 4.5,
       ),
       Product(
-        id: '3',
+        id: 3,
         name: 'Pineapple',
         imagePath: 'assets/images/pineapple.png',
         price: 3.99,
@@ -72,7 +86,7 @@ class Products {
         rating: 5.0,
       ),
       Product(
-        id: '4',
+        id: 4,
         name: 'Broccoli',
         imagePath: 'assets/images/broccoli.png',
         price: 3.00,
@@ -85,7 +99,7 @@ class Products {
         rating: 4.0,
       ),
       Product(
-        id: '5',
+        id: 5,
         name: 'Black Grapes',
         imagePath: 'assets/images/black_grapes.png',
         price: 7.05,
@@ -98,7 +112,7 @@ class Products {
         rating: 4.0,
       ),
       Product(
-        id: '6',
+        id: 6,
         name: 'Pomegranate',
         imagePath: 'assets/images/pomegranate.png',
         price: 2.05,
@@ -111,7 +125,7 @@ class Products {
         rating: 3.5,
       ),
       Product(
-        id: '7',
+        id: 7,
         name: 'Banana',
         imagePath: 'assets/images/banana.png',
         price: 2.05,
@@ -124,7 +138,7 @@ class Products {
         rating: 3.5,
       ),
       Product(
-        id: '8',
+        id: 8,
         name: 'Watermelon',
         imagePath: 'assets/images/watermelon.png',
         price: 1.25,
@@ -137,7 +151,7 @@ class Products {
         rating: 4.7,
       ),
       Product(
-        id: '9',
+        id: 9,
         name: 'Almarai Orange Juice',
         imagePath: 'assets/images/AlmaraiOrangeJuice.png',
         price: 2.13,
@@ -157,7 +171,7 @@ class Products {
       ),
 
       Product(
-        id: '10',
+        id: 10,
         name: 'Eggs',
         imagePath: 'assets/images/eggs.png',
         price: 3.15,
@@ -174,7 +188,7 @@ class Products {
       ),
 
       Product(
-        id: '11',
+        id: 11,
         name: 'Olives Oil',
         imagePath: 'assets/images/olives_oil.png',
         price: 22.0,

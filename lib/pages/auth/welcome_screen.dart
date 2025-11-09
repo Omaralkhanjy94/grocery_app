@@ -3,14 +3,9 @@ import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({super.key});
+class WelcomeScreen extends StatelessWidget {
+  WelcomeScreen({super.key});
 
-  @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
-}
-
-class _WelcomeScreenState extends State<WelcomeScreen> {
   ///The Background image for the welcome screen
   final String? backgroundImage = 'assets/images/welcome_background.jpg';
 
@@ -56,7 +51,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     ///The child widget for the elevated button is "Continue with Google" with google logo image
     ElevatedButton(
       onPressed: () {
-        // Handle Google Sign-In here
+        //todo: Handle Google Sign-In here
+        if (kDebugMode) {
+          print('Continue with Google button pressed');
+        }
       },
       style: ElevatedButton.styleFrom(
         //hide the button shadow

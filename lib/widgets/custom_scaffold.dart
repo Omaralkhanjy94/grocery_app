@@ -1,6 +1,5 @@
 import "package:grocery_app/core/packages_manager/network_imports.dart";
-
-import "../core/packages_manager/ui_imports.dart";
+import "package:grocery_app/core/packages_manager/ui_imports.dart";
 
 class CustomScaffold extends StatelessWidget {
   final Widget body;
@@ -11,6 +10,7 @@ class CustomScaffold extends StatelessWidget {
   final Color? backgroundColor;
   final bool showAppBarButtons;
   final List<Widget>? appBarActions;
+  final bool showBottomNavigationsBar;
   const CustomScaffold({
     super.key,
     required this.body,
@@ -21,6 +21,7 @@ class CustomScaffold extends StatelessWidget {
     this.backgroundColor,
     this.showAppBarButtons = false,
     this.appBarActions,
+    this.showBottomNavigationsBar = false,
   });
 
   @override
@@ -44,7 +45,13 @@ class CustomScaffold extends StatelessWidget {
                     actions: appBarActions!,
                   )
                 : AppBar(
-                    title: Text(title),
+                    title: Text(
+                      title,
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    ),
                     centerTitle: true,
                     backgroundColor: Colors.transparent,
                     elevation: 1,
@@ -52,7 +59,9 @@ class CustomScaffold extends StatelessWidget {
                   )
           : null,
       body: body,
-      bottomNavigationBar: bottomNavigationBar,
+      bottomNavigationBar: (showBottomNavigationsBar)
+          ? bottomNavigationBar
+          : null,
     );
   }
 }

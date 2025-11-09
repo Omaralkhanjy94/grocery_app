@@ -1,17 +1,12 @@
-import '../../core/packages_manager/ui_imports.dart';
-import '../../core/packages_manager/extensions_imports.dart';
-import '../../core/packages_manager/network_imports.dart';
+import 'package:grocery_app/core/packages_manager/state_imports.dart';
+import 'package:grocery_app/core/packages_manager/ui_imports.dart';
+import 'package:grocery_app/core/packages_manager/extensions_imports.dart';
+import 'package:grocery_app/core/packages_manager/network_imports.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
+class SplashScreen extends StatelessWidget {
+  SplashScreen({super.key});
 
-int currentIndexNow = 0;
-
-class _SplashScreenState extends State<SplashScreen> {
-  List<Widget> splashScreens = [
+  final List<Widget> splashScreens = [
     //splashscreen1
     CustomSplashScreen(
       pageTitle: "splashscreen1",
@@ -84,9 +79,12 @@ class _SplashScreenState extends State<SplashScreen> {
               autoPlay: true,
               scrollDirection: Axis.horizontal,
               onPageChanged: (int index, reason) {
-                setState(() {
-                  currentIndexNow = index;
-                });
+                // setState(() {
+                //   currentIndexNow = index;
+                // });
+                context
+                    .read<SplashCurrentIndexCubit>()
+                    .updateSplashCurrentIndexCubit(index);
               },
             ),
 
@@ -111,7 +109,11 @@ class _SplashScreenState extends State<SplashScreen> {
                     width: 10,
                     height: 10,
                     decoration: BoxDecoration(
-                      color: currentIndexNow == index
+                      color:
+                          context
+                                  .read<SplashCurrentIndexCubit>()
+                                  .currentIndexNow ==
+                              index
                           ? Color(0xff6CC51D)
                           : Color(0xffD9D9D9),
                       borderRadius: BorderRadius.circular(5),
