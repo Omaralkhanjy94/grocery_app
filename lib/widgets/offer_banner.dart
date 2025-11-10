@@ -18,10 +18,7 @@ class OfferBanner extends StatelessWidget {
       height: 270,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0),
-        image: const DecorationImage(
-          image: AssetImage('assets/images/home_screen_cover.jpg'),
-          fit: BoxFit.fill,
-        ),
+        image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.fill),
       ),
       child: Align(
         alignment: Alignment(-0.5, 0.3), // left center

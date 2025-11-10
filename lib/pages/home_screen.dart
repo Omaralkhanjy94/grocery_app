@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           //Done: search bar
-          getSearchBar,
+          getSearchBar(),
           10.height,
 
           //[Done]: Make a slide show of cover images by CoverWidget using PageView
