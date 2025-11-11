@@ -88,6 +88,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     ); // Emit updated state
   }
 
+  /// Increase product quantity
   void incrementQuantity(Product product) {
     product.quantity != product.quantity! + 1;
     try {
@@ -97,6 +98,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
 
+  /// Decrease product quantity
   void decrementQuantity(Product product) {
     if (product.quantity! > 0) {
       product.quantity = product.quantity! - 1;
@@ -106,5 +108,13 @@ class ProductsCubit extends Cubit<ProductsState> {
         emit(ProductsError(e.toString()));
       }
     }
+  }
+
+  /// Remove product from favorites
+  void removeFromFavorites(Product product) {
+    product.isFavorite = false;
+    emit(
+      ProductsLoaded((state as ProductsLoaded).products),
+    ); // Emit updated state
   }
 }

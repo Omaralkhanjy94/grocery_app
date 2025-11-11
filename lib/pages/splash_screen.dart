@@ -8,22 +8,19 @@ class SplashScreen extends StatelessWidget {
 
   final List<Widget> splashScreens = [
     //splashscreen1
-    BlocProvider<SplashCurrentIndexCubit>(
-      create: (context) => SplashCurrentIndexCubit(),
-      child: CustomSplashScreen(
-        pageTitle: "splashscreen1",
-        title1: Text("Welcome to", style: GoogleFonts.poppins(fontSize: 25)),
-        title2: Image.asset(
-          "assets/images/bigCart1.png",
-          width: 127,
-          height: 50,
-        ), //big cart image
-        description:
-            "Lorem ipsum dolor sit amet, consetetur"
-            "\nsadipscing elitr, sed diam nonumy",
-        imagePath: 'assets/images/b1.jpg',
-        currentIndex: 0,
-      ),
+    CustomSplashScreen(
+      pageTitle: "splashscreen1",
+      title1: Text("Welcome to", style: GoogleFonts.poppins(fontSize: 25)),
+      title2: Image.asset(
+        "assets/images/bigCart1.png",
+        width: 127,
+        height: 50,
+      ), //big cart image
+      description:
+          "Lorem ipsum dolor sit amet, consetetur"
+          "\nsadipscing elitr, sed diam nonumy",
+      imagePath: 'assets/images/b1.jpg',
+      currentIndex: 0,
     ),
 
     //splashscreen2
@@ -90,9 +87,9 @@ class SplashScreen extends StatelessWidget {
                     .updateSplashCurrentIndexCubit(index);
               },
             ),
-
+    
             carouselController: CarouselSliderController(),
-
+    
             items: splashScreens.map((splash) {
               return splash;
             }).toList(),

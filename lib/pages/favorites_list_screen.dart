@@ -26,35 +26,48 @@ class FavoritesListScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final product = favoriteProducts[index];
                   return ListTile(
-                    leading: Image.asset(product.imagePath),
+                    leading: CircleAvatar(
+                      radius: 25,
+                      backgroundColor: product.circleColor,
+                      child: Image.asset(product.imagePath),
+                    ),
                     title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${favoriteProducts[index].price.toStringAsFixed(2)}x"
-                          "${favoriteProducts[index].quantity}",
+                          "${product.price.toStringAsFixed(2)}x"
+                          "${product.quantity}",
                           style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
-                            color: Color(0xFF6CC51D),
+                            color: accentColor,
                           ),
                         ),
                         Text(
-                          favoriteProducts[index].name,
+                          product.name,
                           style: GoogleFonts.poppins(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
-                            color: Colors.black,
+                            color: textColor,
                           ),
                         ),
                       ],
                     ),
                     subtitle: Text(
-                      "\$${favoriteProducts[index].description}",
+                      "\$${product.note}",
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
-                        color: Color(0xFF868889),
+                        color: subtitleColor,
                       ),
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
+                        context.read<ProductsCubit>().removeFromFavorites(
+                          product,
+                        );
+                      },
+                      icon: Icon(Icons.favorite, color: accentColor),
                     ),
                   );
                 },
