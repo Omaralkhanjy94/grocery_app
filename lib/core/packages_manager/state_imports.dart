@@ -8,4 +8,3 @@ export 'package:grocery_app/stateManager/cubit/product_quantity_cubit.dart';
 export 'package:grocery_app/stateManager/cubit/splash_current_index_cubit.dart';
 export 'package:grocery_app/stateManager/cubit/offer_index_cubit.dart';
 export 'package:grocery_app/stateManager/cubit/user_info_cubit.dart';
-export 'package:grocery_app/stateManager/cubit/cart_cubit.dart';

@@ -13,8 +13,19 @@ class Grocery extends StatelessWidget {
         BlocProvider<SplashCurrentIndexCubit>(
           create: (context) => SplashCurrentIndexCubit(),
         ),
-        BlocProvider<OfferIndexCubit>(create: (context) => OfferIndexCubit()),
-        BlocProvider<ProductsCubit>(create: (context) => ProductsCubit()),
+        BlocProvider<OfferIndexCubit>(
+          create: (context) => OfferIndexCubit()..loadOffersCubit(),
+        ),
+        BlocProvider<ProductsCubit>(
+          create: (context) => ProductsCubit()..fetchFeaturedProducts(),
+        ),
+        BlocProvider<CartCubit>(
+          create: (context) => CartCubit()..fetchCartItems(),
+        ),
+        //User Info Cubit
+        BlocProvider<UserInfoCubit>(
+          create: (context) => UserInfoCubit()..loadUserInfo(),
+        ),
       ],
       child: MaterialApp(
         navigatorKey: Go.navigatorKey,
