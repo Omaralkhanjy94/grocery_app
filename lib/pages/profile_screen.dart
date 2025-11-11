@@ -1,6 +1,4 @@
 import '../core/packages_manager/ui_imports.dart';
-import '../core/packages_manager/network_imports.dart';
-import '../core/packages_manager/data_imports.dart';
 import '../core/packages_manager/extensions_imports.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -42,9 +40,7 @@ class ProfileScreen extends StatelessWidget {
                   constraints: BoxConstraints(
                     maxHeight: MediaQuery.heightOf(context) - 100,
                   ),
-                  child: Center(
-                    child: ProfileOptionsList(),
-                  ),
+                  child: Center(child: ProfileOptionsList()),
                 ),
               ),
             ],

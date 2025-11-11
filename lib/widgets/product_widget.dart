@@ -1,20 +1,8 @@
-import 'package:grocery_app/stateManager/cubit/cart_cubit.dart';
-
 import '../../core/packages_manager/ui_imports.dart';
 import '../../core/packages_manager/extensions_imports.dart';
 import '../../core/packages_manager/network_imports.dart';
 import '../../core/packages_manager/data_imports.dart';
-import '../../core/packages_manager/state_imports.dart'
-    show
-        AuthCubit,
-        AuthSuccess,
-        ProductsCubit,
-        CartCubit,
-        ProductQuantityCubit,
-        ProductQuantityState,
-        ProductQuantityError,
-        ProductQuantityInitial,
-        ProductQuantityUpdated;
+import '../../core/packages_manager/state_imports.dart';
 
 class ProductWidget extends StatelessWidget {
   final Product product;

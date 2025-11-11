@@ -50,6 +50,36 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
 
+  /// Simulated method to fetch all products
+  Future<void> fetchAllProducts() async {
+    emit(ProductsLoading());
+    try {
+      // Simulate a network call to fetch all products
+      await Future.delayed(Duration(seconds: 2));
+      // Dummy data for demonstration
+      List<Product> products = Products.getProducts();
+      emit(ProductsLoaded(products));
+    } catch (e) {
+      emit(ProductsError("Failed to fetch all products: ${e.toString()}"));
+    }
+  }
+
+  /// Simulated method to fetch all products that are marked as favorite
+  Future<void> fetchFavoriteProducts() async {
+    emit(ProductsLoading());
+    try {
+      // Simulate a network call to fetch favorite products
+      await Future.delayed(Duration(seconds: 2));
+      // Dummy data for demonstration
+      List<Product> products = Products.getProducts()
+          .where((p) => p.isFavorite == true)
+          .toList();
+      emit(ProductsLoaded(products));
+    } catch (e) {
+      emit(ProductsError("Failed to fetch favorite products: ${e.toString()}"));
+    }
+  }
+
   /// Simulated method to toggle favorite status of a product
   void toggleFavoriteStatus(Product product) {
     product.isFavorite = !(product.isFavorite ?? false);
